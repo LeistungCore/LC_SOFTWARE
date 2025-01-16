@@ -1,0 +1,14 @@
+../Drivers/CMSIS/Include/core_cm7.h:2265:22:SCB_InvalidateICache	4	static,ignoring_inline_asm
+../Drivers/CMSIS/Include/core_cm7.h:2427:22:SCB_CleanInvalidateDCache	24	static,ignoring_inline_asm
+../hal_stm_lvgl/tft/tft.c:118:6:tft_init	8	static
+../hal_stm_lvgl/tft/tft.c:180:13:ex_disp_flush	64	static
+../hal_stm_lvgl/tft/tft.c:224:13:ex_disp_clean_dcache	16	static
+../hal_stm_lvgl/tft/tft.c:233:13:LCD_MspInit	88	static
+../hal_stm_lvgl/tft/tft.c:316:13:LCD_ClockConfig	8	static
+../hal_stm_lvgl/tft/tft.c:336:16:LCD_Init	16	static
+../hal_stm_lvgl/tft/tft.c:397:13:LCD_LayerRgb565Init	72	static
+../hal_stm_lvgl/tft/tft.c:428:13:LCD_DisplayOn	8	static
+../hal_stm_lvgl/tft/tft.c:436:13:DMA_Config	16	static
+../hal_stm_lvgl/tft/tft.c:481:13:DMA_TransferComplete	24	static
+../hal_stm_lvgl/tft/tft.c:512:13:DMA_TransferError	16	static
+../hal_stm_lvgl/tft/tft.c:522:6:DMA2_Stream0_IRQHandler	8	static
