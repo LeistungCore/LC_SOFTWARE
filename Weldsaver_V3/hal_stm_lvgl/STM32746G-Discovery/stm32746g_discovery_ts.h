@@ -74,7 +74,7 @@
 #define TS_SWAP_X                       ((uint8_t) 0x02)
 #define TS_SWAP_Y                       ((uint8_t) 0x04)
 #define TS_SWAP_XY                      ((uint8_t) 0x08)
-
+//#define FT5336_TH_GROUP 40
 /**
   * @}
   */

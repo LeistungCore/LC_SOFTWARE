@@ -27,11 +27,11 @@ static lv_obj_t *active_spinbox = NULL;
 
 //for flow
 
- int flow_warning_value;
- int flow_fault_value;
- int slow_leak_difference_value;
- int  slow_leak_delay_value=1;
- int Stabilization_delay=5;
+ volatile int flow_warning_value;
+ volatile int flow_fault_value;
+volatile float slow_leak_difference_value=0.00;
+volatile int  slow_leak_delay_value=15;
+volatile int Stabilization_delay=5;
 
 
 
@@ -886,7 +886,7 @@ static void event_handler(lv_event_t * e) {
                       //TEXT
                       lv_obj_t * spinbox_Coolant_Density_TEXT = lv_label_create(temp_tab);
                       lv_label_set_text(spinbox_Coolant_Density_TEXT, "  kg/m³ ");
-                      lv_obj_align(spinbox_Coolant_Density_TEXT, LV_ALIGN_RIGHT_MID, -75, 0);
+                      lv_obj_align(spinbox_Coolant_Density_TEXT, LV_ALIGN_RIGHT_MID, -75, 5);
 
            //SPINBOX FOR COOLANT HEAT CAPACITY
                       spinbox_Coolant_Heat_Capacity = lv_spinbox_create(temp_tab);
@@ -910,7 +910,7 @@ static void event_handler(lv_event_t * e) {
 
                       lv_obj_t * spinbox_Coolant_Heat_Capacity_TEXT = lv_label_create(temp_tab);
                       lv_label_set_text(spinbox_Coolant_Heat_Capacity_TEXT, " J/kg.°C");
-                      lv_obj_align(spinbox_Coolant_Heat_Capacity_TEXT, LV_ALIGN_RIGHT_MID, -80, 30);
+                      lv_obj_align(spinbox_Coolant_Heat_Capacity_TEXT, LV_ALIGN_RIGHT_MID, -80, 35);
 
               //SPINBOX FOR HEAT LOAD THRESHOLD
                       spinbox_Heat_Load_Threshold = lv_spinbox_create(temp_tab);

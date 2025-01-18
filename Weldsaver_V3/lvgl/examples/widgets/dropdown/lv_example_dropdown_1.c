@@ -213,7 +213,7 @@ void show_text(void)
     lv_label_set_text(label4, "Fault"); // Set label text
 
     lv_label_set_text(label5, "COOL CONTROL - 2"); // Set label text
-
+    lv_obj_set_style_text_color(label5, lv_color_hex(0xD2691E), LV_PART_MAIN);
     lv_obj_align(label, LV_ALIGN_TOP_LEFT, 60, 97); // Align to top-left corner
     lv_obj_align(label1, LV_ALIGN_LEFT_MID, 60, 3); // Align to top-left corner
     lv_obj_align(label2, LV_ALIGN_LEFT_MID, 60, 38); // Align to top-left corner

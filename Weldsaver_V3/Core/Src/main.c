@@ -33,7 +33,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 LV_IMG_DECLARE(leakage_warning_1);  // This assumes you have an image called 'my_image'
-int count;
+//int count;
 // Declare the TFT display object and other global variables
 lv_obj_t * img_obj = NULL;
 lv_obj_t * txt_obj = NULL;
@@ -49,28 +49,35 @@ uint32_t adc_temperature_1;
 uint32_t adc_flow_rate_1;
 
 uint32_t sensor_value,sensor_value1;
-volatile uint8_t timer10s_flag = 0;
-volatile uint8_t timer10s_flag1=0;
+ uint8_t timer10s_flag = 0;
+ uint8_t timer10s_flag1=0;
+
+ volatile uint8_t programStarted = 0;
 //static uint32_t timerCounter = 0;  // To count the timer interrupts
 //static uint32_t lastActionTime = 0;  // To store the last action time
 #define ACTION_DELAY_MS 5000  // 5 seconds delay
 
 extern int flow_warning_value;
 extern int flow_fault_value;
-extern int slow_leak_difference_value;
+extern float slow_leak_difference_value;
 extern int  slow_leak_delay_value;
 extern int Stabilization_delay;
 
 extern int outlet_temp;
 extern int outlet_temp1;
-
+extern int differential_temp;
+extern int differential_temp1;
 
 
 volatile uint32_t timerOverflowCount = 0;
 volatile bool timerExpired = false;
 
+
+
 float temp1;
 float temp2;
+
+float trip_point;
 
  lv_obj_t *dd;
 lv_obj_t* warning_lable;
@@ -84,8 +91,8 @@ lv_obj_t* warning_lable1;
 #define PRESCALAR  41000
 
 
-#define MAX_VALUES 20
-#define MAX_VALUES1 20
+#define MAX_VALUES 25
+#define MAX_VALUES1 25
 
 #define  MAX_VALUES_flow 20
 #define MAX_VALUES_flow1 20
@@ -117,18 +124,18 @@ volatile float frequency_TIM13 = 0, frequency_TIM14 = 0;
 volatile uint8_t Is_First_Captured_TIM13 = 0, Is_First_Captured_TIM14 = 0;
 
 /* USER CODE END PTD */
-uint32_t sensor_values[MAX_VALUES];
+uint64_t  sensor_values[MAX_VALUES];
 
-  uint32_t sum;
+uint64_t  sum;
   float average;
-  int count_adc = 0;
+  uint64_t  count_adc = 0;
 
 
-  uint32_t sensor_values1[MAX_VALUES1];
+  uint64_t  sensor_values1[MAX_VALUES1];
 
-    uint32_t sum1;
+  uint64_t  sum1;
     float average1;
-    int count_adc1 = 0;
+    uint64_t  count_adc1 = 0;
 
 
     uint32_t flow_values[MAX_VALUES_flow];
@@ -197,6 +204,14 @@ void transmit_value_via_uart(void);
 void flow_settings(void);
 void temp_settings(void);
 void toggle_txt_visibility_temp(void);
+
+void toggle_txt_visibility_off(void);
+void toggle_image_visibility_off(void);
+
+void trip_point_of_leak(void);
+
+void two_channels_adc_calculation(void);
+void stuck_logic(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -208,7 +223,7 @@ void ADC_Select_CH0 (void)
 	  */
 	  sConfig.Channel = ADC_CHANNEL_0;
 	  sConfig.Rank = 1;
-	  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+	  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
 	  if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
 	  {
 	    Error_Handler();
@@ -221,7 +236,7 @@ void ADC_Select_CH8 (void)
 	  */
 	  sConfig.Channel = ADC_CHANNEL_8;
 	  sConfig.Rank = 2;
-	  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+	  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
 	  if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
 	  {
 	    Error_Handler();
@@ -241,12 +256,12 @@ int main(void)
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
-if (timer10s_flag1==Stabilization_delay)
-{
-	timer10s_flag1=0;
-}
+//if (timer10s_flag1==Stabilization_delay)
+//{
+////	timer10s_flag1=0;
+//}
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+     HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -299,216 +314,241 @@ if (timer10s_flag1==Stabilization_delay)
 	  HAL_TIM_Base_Start_IT(&htim2);
 	  HAL_TIM_Base_Start_IT(&htim3);
 
-	  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);
+//	  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);
 	  lv_example_dropdown_BYPASS();
 
-	  	  img_obj = lv_img_create(lv_scr_act());  // Create image object on the active screen
-	      lv_img_set_src(img_obj, &leakage_warning_1);  // Set the image source
-	      lv_obj_set_size(img_obj, 40, 33);
-	      lv_obj_align(img_obj, LV_ALIGN_OUT_TOP_MID, 180, 25);
-	      lv_obj_add_flag(img_obj, LV_OBJ_FLAG_HIDDEN);
+	  img_obj = lv_img_create(lv_scr_act());  // Create image object on the active screen
+	  lv_img_set_src(img_obj, &leakage_warning_1);  // Set the image source
+	  lv_obj_set_size(img_obj, 40, 33);
+	  lv_obj_align(img_obj, LV_ALIGN_OUT_TOP_MID, 180, 25);
+	  lv_obj_add_flag(img_obj, LV_OBJ_FLAG_HIDDEN);
 
-	      warning_lable = lv_label_create(lv_scr_act());
-	      warning_lable1 = lv_label_create(lv_scr_act());
+	  warning_lable = lv_label_create(lv_scr_act());
+	  warning_lable1 = lv_label_create(lv_scr_act());
 
-	 	  lv_style_t style;
-	 	  lv_style_init(&style);
+	  lv_style_t style;
+	  lv_style_init(&style);
 
 
-	      lv_obj_align(warning_lable, LV_ALIGN_TOP_MID, 50, 50);
-	      lv_label_set_text(warning_lable, "FLOW WARNING");
-	      lv_obj_add_flag(warning_lable, LV_OBJ_FLAG_HIDDEN);
-	      lv_obj_add_style(warning_lable, &style, LV_PART_MAIN); // Apply style to the label
+	  lv_obj_align(warning_lable, LV_ALIGN_TOP_MID, 50, 50);
+	  lv_label_set_text(warning_lable, "FLOW WARNING");
+	  lv_obj_add_flag(warning_lable, LV_OBJ_FLAG_HIDDEN);
+	  lv_obj_add_style(warning_lable, &style, LV_PART_MAIN); // Apply style to the label
 //	      lv_obj_set_style_bg_color(warning_lable, lv_color_hex(0xFF0000), LV_PART_MAIN);
-	      lv_obj_set_style_text_color(warning_lable, lv_color_hex(0xFF0000), LV_PART_MAIN);
-	      // Position the image in the middle of the screen
-	      lv_obj_align(warning_lable1, LV_ALIGN_TOP_MID, 50, 50);
-	      lv_label_set_text(warning_lable1, "TEMP WARNING");
-	      lv_obj_add_flag(warning_lable1, LV_OBJ_FLAG_HIDDEN);
-	      lv_obj_add_style(warning_lable1, &style, LV_PART_MAIN); // Apply style to the label
-	      lv_obj_set_style_text_color(warning_lable1, lv_color_hex(0xFF0000), LV_PART_MAIN);
-	  //show_text1();
+	  lv_obj_set_style_text_color(warning_lable, lv_color_hex(0xFF0000), LV_PART_MAIN);
+	  // Position the image in the middle of the screen
+	  lv_obj_align(warning_lable1, LV_ALIGN_TOP_MID, 50, 50);
+	  lv_label_set_text(warning_lable1, "TEMP WARNING");
+	  lv_obj_add_flag(warning_lable1, LV_OBJ_FLAG_HIDDEN);
+	  lv_obj_add_style(warning_lable1, &style, LV_PART_MAIN); // Apply style to the label
+	  lv_obj_set_style_text_color(warning_lable1, lv_color_hex(0xFF0000), LV_PART_MAIN);
+
   /* USER CODE END 2 */
-//	   	if (timer10s_flag1==1)
-//	   	{
-//            HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_SET);   // Set PI1 high
-//            HAL_Delay(100);
-//
-//            timer10s_flag1=0;
-//	   	}
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
 
   {
-	  update_values(adc_temperature ,adc_flow_rate,adc_temperature_1,adc_flow_rate_1);
 
-	  ADC_Select_CH0();
-	  HAL_ADC_Start(&hadc3);
-	 // printf ("Sensor Value = %d \n\r", sensor_value); // Running at 38400, though set at 115200
-	  sensor_value= HAL_ADC_GetValue(&hadc3);
-	  HAL_ADC_PollForConversion(&hadc3, 1000);
-	  HAL_ADC_Stop(&hadc3);
-	  sensor_values[count_adc] = sensor_value;
+	 if (programStarted) {
 
-		  sum = sum + sensor_value;
-		  count_adc++;
-
-		  if (count_adc >= MAX_VALUES)
-		  {
-			  average = (float)sum / MAX_VALUES;
-
-				  temp1=(((average*0.00080566*1.232)-1)*1000)-39;
-
-				  temp1=((temp1-1000)/(1000*0.00391))-100;
-
-				  count_adc = 0;
-				         sum = 0;
-		  }
-
-
-	  //adc1
-
-	  ADC_Select_CH8();
-	 	  HAL_ADC_Start(&hadc3);
-	 	 // printf ("Sensor Value = %d \n\r", sensor_value); // Running at 38400, though set at 115200
-	 	  sensor_value1= HAL_ADC_GetValue(&hadc3);
-	 	  HAL_ADC_PollForConversion(&hadc3, 1000);
-	 	  HAL_ADC_Stop(&hadc3);
-	 	  sensor_values[count_adc1] = sensor_value1;
-
-	 		  sum1 = sum1 + sensor_value1;
-	 		  count_adc1++;
-
-	 		  if (count_adc1 >= MAX_VALUES1)
-	 		  {
-	 			  average1 = (float)sum1 / MAX_VALUES1;
-
-	 				  temp2=(((average1*0.00080566*1.232)-1)*1000)-39;
-
-	 				  temp2=((temp2-1000)/(1000*0.00391))-100;
-
-
-	 				  count_adc1 = 0;
-	 				         sum1 = 0;
-	 		  }
-
-	 	     if (average_flow == average_flow )
-	 	            {
-	 	    	stuck_counter++;
-	 	                if (stuck_counter == STUCK_THRESHOLD)
-	 	                {
-	 	                    // Reset flow calculation if stuck
-	 	                    average_flow = 0.00;
-
-	 	                   stuck_counter = 0;  // Reset stuck counter
-	 	                }
-	 	            }
-	 	    if (average_flow1 == average_flow1 )
-	 	 	 	            {
-	 	 	 	    	stuck_counter1++;
-	 	 	 	                if (stuck_counter1 == STUCK_THRESHOLD1)
-	 	 	 	                {
-	 	 	 	                    // Reset flow calculation if stuck
-	 	 	 	                    average_flow1 = 0.00;
-
-	 	 	 	                   stuck_counter1 = 0;  // Reset stuck counter
-	 	 	 	                }
-	 	 	 	            }
-//    /* USER CODE END WHILE */
-	 	  // if (average_flow<= 7)
-	 	//   {
-	 		// if ((average_flow - average_flow1) >= 2)
-	    	if (timer10s_flag)
-	{
-	 	   if (calculate_flow)
-	 	   {
-
-
-	 			 if ((average_flow - average_flow1) >= 1)
-	 		    {
-	 			 toggle_image_visibility();
-	 			 toggle_txt_visibility();
-	 		        HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
-	 		        HAL_Delay(100);
-	 		      // lv_dropdown_set_selected(dd, 1);
-	 		    }
-	 	   }
-	 	  timer10s_flag=0;
-	}
-	    	flow_settings();
-
-	    	    	temp_settings();
+	 update_values(adc_temperature ,adc_flow_rate,adc_temperature_1,adc_flow_rate_1);
+	 two_channels_adc_calculation();
+	 stuck_logic();
+	 trip_point_of_leak();
+	 flow_settings();
+	 temp_settings();
     /* USER CODE BEGIN 3 */
-	    	transmit_value_via_uart();
-	    	HAL_Delay(20);
-	  lv_tick_inc(100);
-      lv_task_handler();
-      HAL_Delay(1);
+	 transmit_value_via_uart();
+	 lv_tick_inc(10);
+	 lv_task_handler();
+
+
   }
+//	 programStarted=0;
   /* USER CODE END 3 */
+}
+}
+
+void two_channels_adc_calculation(void)
+{
+	ADC_Select_CH0();
+		  HAL_ADC_Start(&hadc3);
+		 // printf ("Sensor Value = %d \n\r", sensor_value); // Running at 38400, though set at 115200
+		  sensor_value= HAL_ADC_GetValue(&hadc3);
+		  HAL_ADC_PollForConversion(&hadc3, 1000);
+		  HAL_ADC_Stop(&hadc3);
+		  sensor_values[count_adc] = sensor_value;
+
+			  sum = sum + sensor_value;
+			  count_adc++;
+
+			  if (count_adc >= MAX_VALUES)
+			  {
+				  average = (float)sum / MAX_VALUES;
+
+					  temp1=(((average*0.00080566*1.232)-1)*1000)-39;
+
+					  temp1=((temp1-1000)/(1000*0.00391))-100;
+
+					  count_adc = 0;
+					         sum = 0;
+			  }
+
+
+		  //adc1
+
+		  ADC_Select_CH8();
+		 	  HAL_ADC_Start(&hadc3);
+		 	 // printf ("Sensor Value = %d \n\r", sensor_value); // Running at 38400, though set at 115200
+		 	  sensor_value1= HAL_ADC_GetValue(&hadc3);
+		 	  HAL_ADC_PollForConversion(&hadc3, 1000);
+		 	  HAL_ADC_Stop(&hadc3);
+		 	  sensor_values[count_adc1] = sensor_value1;
+
+		 		  sum1 = sum1 + sensor_value1;
+		 		  count_adc1++;
+
+		 		  if (count_adc1 >= MAX_VALUES1)
+		 		  {
+		 			  average1 = (float)sum1 / MAX_VALUES1;
+
+		 				  temp2=(((average1*0.00080566*1.232)-1)*1000)-39;
+
+		 				  temp2=((temp2-1000)/(1000*0.00391))-100;
+
+
+		 				  count_adc1 = 0;
+		 				         sum1 = 0;
+		 		  }
+
+
+}
+
+void trip_point_of_leak(void)
+{
+	if(timer10s_flag>=slow_leak_delay_value)
+{
+	   if (calculate_flow)
+	   {
+		    trip_point= average_flow - average_flow1;
+//	 		   average_flow
+			 if (trip_point >= slow_leak_difference_value)
+		    {
+			 toggle_image_visibility();
+			 toggle_txt_visibility();
+			 HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
+			 HAL_Delay(10);
+
+		    }
+			 else
+			 {
+				toggle_image_visibility_off();
+				toggle_txt_visibility_off();
+			 }
+
+	   }
+//	 	  timer10s_flag=0;
+}
+}
+
+void stuck_logic(void)
+{
+	 if (average_flow == average_flow )
+				{
+			stuck_counter++;
+					if (stuck_counter == STUCK_THRESHOLD)
+					{
+						// Reset flow calculation if stuck
+						average_flow = 0.00;
+
+					   stuck_counter = 0;  // Reset stuck counter
+					}
+				}
+		if (average_flow1 == average_flow1 )
+						{
+					stuck_counter1++;
+							if (stuck_counter1 == STUCK_THRESHOLD1)
+							{
+								// Reset flow calculation if stuck
+								average_flow1 = 0.00;
+
+							   stuck_counter1 = 0;  // Reset stuck counter
+							}
+						}
 }
 
 void flow_settings(void)
 {
-	//for flow settings
-    		    	//flow warning
-    	//	    	if (average_flow<flow_warning_value)
-    	//	                            	{
-    	//	 			 toggle_image_visibility();
-    	//	 			 toggle_txt_visibility();
-    	//	                            	}
-    	//	    	//flow fault
-    	//	    	if (average_flow<flow_fault_value)
-    	//	    		{
-    	//	    		 NVIC_SystemReset();
-    	//	 		 }
+//	for flow settings
+//    		    	flow warning
+    		    	if (average_flow<flow_warning_value)
+    		                            	{
+    		 			 toggle_image_visibility();
+    		 			 toggle_txt_visibility();
+    		                            	}
+    		    	//flow fault
+    		    	if (average_flow<flow_fault_value)
+    		    		{
+    		    		 NVIC_SystemReset();
+    		 		 }
 }
 
 
 
 void temp_settings(void)
 {
-if (temp2>=outlet_temp)
-{
-		 			 toggle_image_visibility();
-		 			toggle_txt_visibility_temp();
-		 			 HAL_Delay(100);
+//if (temp2>=outlet_temp)
+//{
+//		 			 toggle_image_visibility();
+//		 			toggle_txt_visibility_temp();
+//		 			 HAL_Delay(100);
+//
+//}
+//
+//
+//else if (temp2>=outlet_temp1)
+//{
+//	{
+//	   	 NVIC_SystemReset();
+//	    }
+//
+//}
+//	else if (temp1-temp2>=differential_temp)
+//	{
+//		 toggle_image_visibility();
+//			 			toggle_txt_visibility_temp();
+//	}
+//
+//	else if (temp1-temp2>=differential_temp1)
+//
+//		{
+//			   	 NVIC_SystemReset();
+//			    }
+
 
 }
 
 
-else if (temp2>=outlet_temp1)
-{
-	{
-	   	 NVIC_SystemReset();
-	    }
-
-
-}
-
-
-
-
-}
 void transmit_value_via_uart(void) {
 
-char msg[4];  // Buffer to hold the value (max 3 digits + null terminator)
+char msg[7];  // Buffer to hold the value (max 3 digits + null terminator)
 int len = 0;
 
-char msg1[4];  // Buffer to hold the value (max 3 digits + null terminator)
+char msg1[7];  // Buffer to hold the value (max 3 digits + null terminator)
 int len1 = 0;
 
-char msg2[4];  // Buffer to hold the value (max 3 digits + null terminator)
+char msg2[7];  // Buffer to hold the value (max 3 digits + null terminator)
 int len2 = 0;
 
-char msg3[4];  // Buffer to hold the value (max 3 digits + null terminator)
+char msg3[7];  // Buffer to hold the value (max 3 digits + null terminator)
 int len3 = 0;
 
 // Check if flow_warning_value is available (you can use a condition here to decide when to transmit)
-if (flow_warning_value != 0)
+if (sensor_value != 0)
 {  // Example: check if flow_warning_value is non-zero
-len = sprintf(msg, "%d\n", flow_warning_value);  // Format the flow_warning_value as a string
+len = sprintf(msg, "%d\n", sensor_value);  // Format the flow_warning_value as a string
 if (len > 0)
 {
 HAL_UART_Transmit(&huart1, (uint8_t*)msg, len, HAL_MAX_DELAY);  // Transmit it over UART1
@@ -554,10 +594,31 @@ void toggle_image_visibility(void) {
 
         }
         img_visible = !img_visible;  // Toggle the visibility flag
-        HAL_Delay(50);
+//        HAL_Delay(50);
 
     }
 }
+void toggle_image_visibility_off(void)
+{
+    if (img_obj != NULL)
+    {
+        // Keep the image hidden without toggling
+        lv_obj_add_flag(img_obj, LV_OBJ_FLAG_HIDDEN);  // Hide the image
+        img_visible = false;  // Ensure the flag is set to false, no toggling
+        HAL_Delay(10);  // Delay
+    }
+}
+void toggle_txt_visibility_off(void)
+{
+    if (warning_lable != NULL) {
+        // Keep the text hidden without toggling
+        lv_obj_add_flag(warning_lable, LV_OBJ_FLAG_HIDDEN);  // Hide the warning label
+        txt_visible = false;  // Ensure the flag is set to false, no toggling
+        HAL_Delay(10);  // Delay
+    }
+}
+
+
 void toggle_txt_visibility(void) {
     if (warning_lable != NULL) {
         // Toggle visibility based on the current state
@@ -569,7 +630,7 @@ void toggle_txt_visibility(void) {
             lv_obj_clear_flag(warning_lable, LV_OBJ_FLAG_HIDDEN);  // Show the warning label
         }
         txt_visible = !txt_visible;  // Toggle the visibility flag
-        HAL_Delay(50);
+        HAL_Delay(10);
     }
 }
 
@@ -584,7 +645,7 @@ void toggle_txt_visibility_temp(void) {
             lv_obj_clear_flag(warning_lable1, LV_OBJ_FLAG_HIDDEN);  // Show the warning label
         }
         txt_visible = !txt_visible;  // Toggle the visibility flag
-        HAL_Delay(100);
+        HAL_Delay(10);
         lv_task_handler();
     }
 }
@@ -644,7 +705,7 @@ void TIM3_IRQHandler(void)
 if (__HAL_TIM_GET_FLAG(&htim3, TIM_FLAG_UPDATE) != RESET)
 	{
 	__HAL_TIM_CLEAR_FLAG(&htim3, TIM_FLAG_UPDATE);
-	timer10s_flag = 1;  // Set the flag to indicate that 10 seconds have passed
+	timer10s_flag++;  // Set the flag to indicate that 10 seconds have passed
 //  HAL_TIM_IRQHandler(&htim3);
 
 }
@@ -656,29 +717,17 @@ void TIM2_IRQHandler(void)
 if (__HAL_TIM_GET_FLAG(&htim2, TIM_FLAG_UPDATE) != RESET)
 	{
 	__HAL_TIM_CLEAR_FLAG(&htim2, TIM_FLAG_UPDATE);
-	timer10s_flag1++;
+		timer10s_flag1++;
 
-	// Set the flag to indicate that 10 seconds have passed
-//  HAL_TIM_IRQHandler(&htim3);
+      if (timer10s_flag1 >= Stabilization_delay && programStarted == 0) {
+          programStarted = 1;  // Set the program start flag
+          timer10s_flag1 = 0;   // Reset the counter if needed
+      }
 
 }
 }
 
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-//{
-//if (htim->Instance == TIM2)
-//{
-//// Increment overflow count
-//timerOverflowCount++;
-//if (timerOverflowCount >= 5)
-//     {
-//         HAL_TIM_Base_Stop_IT(&htim2);  // Stop timer interrupt
-//         timerExpired = true;  // Flag to indicate 5 seconds have passed
-//     }
-//// Stop after 5 seconds (5 overflows of 1 second each)
-//
-//}
-//}
+
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
@@ -903,7 +952,7 @@ static void MX_ADC3_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -911,7 +960,7 @@ static void MX_ADC3_Init(void)
 
   sConfig.Channel = ADC_CHANNEL_8;
   sConfig.Rank = ADC_REGULAR_RANK_2;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -1026,8 +1075,8 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 65535;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1666*Stabilization_delay;
-//  htim2.Init.Period = 1666;
+//  htim2.Init.Period = 1666*Stabilization_delay;
+  htim2.Init.Period = 1666;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -1074,7 +1123,8 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 65535;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 1666*slow_leak_delay_value;
+//  htim3.Init.Period = 1666*slow_leak_delay_value;
+  htim3.Init.Period = 1666;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -1619,6 +1669,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_10;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
 }

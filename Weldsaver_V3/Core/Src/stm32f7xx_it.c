@@ -55,7 +55,7 @@
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
-extern int timer10s_flag;
+//extern int timer10s_flag;
 /* External variables --------------------------------------------------------*/
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
