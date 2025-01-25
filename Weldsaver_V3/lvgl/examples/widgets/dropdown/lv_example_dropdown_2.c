@@ -15,6 +15,9 @@ extern float frequency_TIM14;
 
 extern float average_flow;
 extern float average_flow1;
+
+extern float GPM;
+extern float GPM1;
 lv_obj_t *label1, *label2, *label3, *label4;
 
 // Declare global variables
@@ -22,14 +25,22 @@ lv_obj_t * main_screen = NULL;
 lv_obj_t * tabview_screen = NULL;
 static lv_obj_t *active_spinbox = NULL;
 
+extern int mode;
+
+int celcious_flag;
+int fahrenheit_flag;
+
+int Normal_Flag;
+int Open_Flag;
+int Presize_Flag;
 
 //spinbox variables
 
 //for flow
 
- volatile int flow_warning_value;
- volatile int flow_fault_value;
-volatile float slow_leak_difference_value=0.00;
+ volatile int flow_warning_value=0;
+ volatile int flow_fault_value=0;
+volatile float slow_leak_difference_value;
 volatile int  slow_leak_delay_value=15;
 volatile int Stabilization_delay=5;
 
@@ -41,8 +52,8 @@ int outlet_temp1=60;
 int  outlet_temp=50;
 int differential_temp1=40;
 int  differential_temp=30;
-int thermal_load1;
-int thermal_load;
+float thermal_load1=90;
+float thermal_load=70;
 int coolant_density;
 int coolant_heat_capacity;
 int heatload_threshold;
@@ -107,47 +118,27 @@ static void event_handler_Flow_3_parameters(lv_event_t *e)
         lv_dropdown_get_selected_str(obj, buf, sizeof(buf));
         LV_LOG_USER("Option: %s", buf);
 
+        Normal_Flag = 0;
+        Open_Flag = 0;
+        Presize_Flag = 0;
 
          if (id == 2)
         {
             // Handle case for id == 2
             if (strcmp(buf, "Normal") == 0)
             {
-            	if ((average_flow - average_flow1) >= 0.5)
-            		 		    {
-            		 toggle_image_visibility();
-            		  toggle_txt_visibility();
-            		 		        HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
-            		 		        HAL_Delay(100);
-            		 		      // lv_dropdown_set_selected(dd, 1);
-            		 		    }
-
+            	Normal_Flag=1;
 
                 LV_LOG_USER("Normal");
             }
             else if (strcmp(buf, "Open") == 0)
             {
-
-            	if ((average_flow - average_flow1) >= 1)
-                        		 		    {
-                        		 			 toggle_image_visibility();
-                        		 			 toggle_txt_visibility();
-                        		 		        HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
-                        		 		        HAL_Delay(100);
-                        		 		      // lv_dropdown_set_selected(dd, 1);
-                        		 		    }
+            	Open_Flag=1;
                 LV_LOG_USER("Open");
             }
             else if (strcmp(buf, "Presize") == 0)
             {
-            	if ((average_flow - average_flow1) >= 1.5)
-                        		 		    {
-                        		 			 toggle_image_visibility();
-                        		 			 toggle_txt_visibility();
-                        		 		        HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
-                        		 		        HAL_Delay(100);
-                        		 		      // lv_dropdown_set_selected(dd, 1);
-                        		 		    }
+            	Presize_Flag=1;
                 LV_LOG_USER("Presize");
             }
         }
@@ -157,12 +148,36 @@ static void event_handler_Flow_3_parameters(lv_event_t *e)
             if (strcmp(buf, "GPM") == 0)
             {
                 LV_LOG_USER("GPM");
+
+                mode = false;
             }
             else if (strcmp(buf, "LPM") == 0)
             {
+                mode = true;
                 LV_LOG_USER("LPM");
             }
         }
+
+        else if (id==4)
+        {
+        	   // Handle case for id == 3
+        	            if (strcmp(buf, "°C") == 0)
+        	            {
+        	                LV_LOG_USER("°C");
+
+        	                celcious_flag=1;
+        	                fahrenheit_flag = 0;
+        	            }
+
+        	            else if (strcmp(buf, "°f") == 0)
+        	            {
+
+        	                LV_LOG_USER("°f");
+        	                fahrenheit_flag=1;
+        	                celcious_flag = 0;
+        	            }
+        }
+
     }
 }
 
@@ -458,7 +473,7 @@ static void event_handler(lv_event_t * e) {
         //SPINBOX FOR FLOW WARNING
         			  spinbox_Flow_Warning = lv_spinbox_create(flow_tab);
                       lv_spinbox_set_range(spinbox_Flow_Warning, 0, 20);
-                      lv_spinbox_set_value(spinbox_Flow_Warning, 0);
+                      lv_spinbox_set_value(spinbox_Flow_Warning, flow_warning_value);
                       lv_spinbox_set_digit_format(spinbox_Flow_Warning, 2, 1);
                       lv_obj_set_size(spinbox_Flow_Warning, 70, 25);
                       lv_obj_align(spinbox_Flow_Warning, LV_ALIGN_TOP_LEFT, 205, -15);
@@ -484,7 +499,7 @@ static void event_handler(lv_event_t * e) {
 
                       spinbox_Flow_Fault = lv_spinbox_create(flow_tab);
                       lv_spinbox_set_range(spinbox_Flow_Fault, 0, 20);
-                      lv_spinbox_set_value(spinbox_Flow_Fault, 0);
+                      lv_spinbox_set_value(spinbox_Flow_Fault, flow_fault_value);
                       lv_spinbox_set_digit_format(spinbox_Flow_Fault, 2, 1);
                       lv_obj_set_size(spinbox_Flow_Fault, 70, 25);
                       lv_obj_align(spinbox_Flow_Fault, LV_ALIGN_TOP_LEFT, 205, 15);
@@ -497,7 +512,7 @@ static void event_handler(lv_event_t * e) {
 
 
                       lv_obj_add_event_cb(spinbox_Flow_Fault, spinbox_event_handler, LV_EVENT_FOCUSED, (void*)2);
-                           lv_obj_add_event_cb(spinbox_Flow_Fault, spinbox_event_handler, LV_EVENT_VALUE_CHANGED, (void*)2);
+                      lv_obj_add_event_cb(spinbox_Flow_Fault, spinbox_event_handler, LV_EVENT_VALUE_CHANGED, (void*)2);
 //                           lv_obj_add_event_cb(spinbox_Flow_Fault, increment_temp_event_handler, LV_EVENT_PRESSED, (void*)2);
 //                           lv_obj_add_event_cb(spinbox_Flow_Fault, decrement_temp_event_handler, LV_EVENT_PRESSED, (void*)2);
 
@@ -511,7 +526,7 @@ static void event_handler(lv_event_t * e) {
 
                       spinbox_Slow_Leak_Difference = lv_spinbox_create(flow_tab);
                       lv_spinbox_set_range(spinbox_Slow_Leak_Difference, 0, 20);
-                      lv_spinbox_set_value(spinbox_Slow_Leak_Difference, 0);
+                      lv_spinbox_set_value(spinbox_Slow_Leak_Difference, slow_leak_difference_value);
                       lv_spinbox_set_digit_format(spinbox_Slow_Leak_Difference, 2, 3);
                       lv_obj_set_size(spinbox_Slow_Leak_Difference, 70, 25);
                       lv_obj_align(spinbox_Slow_Leak_Difference, LV_ALIGN_TOP_LEFT, 205, 45);
@@ -538,7 +553,7 @@ static void event_handler(lv_event_t * e) {
 
                       spinbox_Slow_leak_Delay = lv_spinbox_create(flow_tab);
                       lv_spinbox_set_range(spinbox_Slow_leak_Delay, 0, 100);
-                      lv_spinbox_set_value(spinbox_Slow_leak_Delay, 0);
+                      lv_spinbox_set_value(spinbox_Slow_leak_Delay, slow_leak_delay_value);
                       lv_spinbox_set_digit_format(spinbox_Slow_leak_Delay, 2, 3);
                       lv_obj_set_size(spinbox_Slow_leak_Delay, 70, 25);
                       lv_obj_align(spinbox_Slow_leak_Delay, LV_ALIGN_TOP_LEFT, 205, 75);
@@ -558,7 +573,7 @@ static void event_handler(lv_event_t * e) {
 
 
                       lv_obj_t * spinbox_Slow_leak_Delay_TEXT = lv_label_create(flow_tab);
-                      lv_label_set_text(spinbox_Slow_leak_Delay_TEXT, "ms");
+                      lv_label_set_text(spinbox_Slow_leak_Delay_TEXT, "S");
                       lv_obj_align(spinbox_Slow_leak_Delay_TEXT, LV_ALIGN_TOP_RIGHT, -107, 80);
 
 
@@ -568,7 +583,7 @@ static void event_handler(lv_event_t * e) {
 
                       spinbox_stabilization_Delay = lv_spinbox_create(flow_tab);
                        lv_spinbox_set_range(spinbox_stabilization_Delay, 0, 10);
-                       lv_spinbox_set_value(spinbox_stabilization_Delay, 0);
+                       lv_spinbox_set_value(spinbox_stabilization_Delay, Stabilization_delay);
                        lv_spinbox_set_digit_format(spinbox_stabilization_Delay, 2, 3);
                        lv_obj_set_size(spinbox_stabilization_Delay, 70, 25);
                        lv_obj_align(spinbox_stabilization_Delay, LV_ALIGN_TOP_LEFT, 205, 105);
@@ -589,7 +604,7 @@ static void event_handler(lv_event_t * e) {
 
                        lv_obj_t * spinbox_stabilization_Delay_TEXT = lv_label_create(flow_tab);
                        lv_label_set_text(spinbox_stabilization_Delay_TEXT, "S");
-                       lv_obj_align(spinbox_stabilization_Delay_TEXT, LV_ALIGN_TOP_RIGHT, -110, 110);
+                       lv_obj_align(spinbox_stabilization_Delay_TEXT, LV_ALIGN_TOP_RIGHT, -107, 110);
 
 
 
@@ -600,7 +615,7 @@ static void event_handler(lv_event_t * e) {
         // LEAK_RESPONSE_spinbox
                                          lv_obj_t *  LEAK_RESPONSE_DROPDOWN = lv_dropdown_create(flow_tab);
                                          lv_dropdown_set_options( LEAK_RESPONSE_DROPDOWN, "Normal\n"
-                                                                        "Open\n "
+                                                                        "Open\n"
                                                                         "Presize"
                                                                       );
 
@@ -820,7 +835,7 @@ static void event_handler(lv_event_t * e) {
 
                       spinbox_Thermal_load = lv_spinbox_create(temp_tab);
                       lv_spinbox_set_range(spinbox_Thermal_load, 0, 100);
-                      lv_spinbox_set_value(spinbox_Thermal_load, 0);
+                      lv_spinbox_set_value(spinbox_Thermal_load, 70);
                       lv_spinbox_set_digit_format(spinbox_Thermal_load, 3, 3);
                       lv_obj_set_size(spinbox_Thermal_load, 70, 25);
                       lv_obj_align(spinbox_Thermal_load, LV_ALIGN_TOP_LEFT, 220, 60);
@@ -845,7 +860,7 @@ static void event_handler(lv_event_t * e) {
 
                       spinbox_Thermal_load_FAULT = lv_spinbox_create(temp_tab);
                       lv_spinbox_set_range(spinbox_Thermal_load_FAULT, 0, 100);
-                      lv_spinbox_set_value(spinbox_Thermal_load_FAULT, 0);
+                      lv_spinbox_set_value(spinbox_Thermal_load_FAULT, 90);
                       lv_spinbox_set_digit_format(spinbox_Thermal_load_FAULT, 3, 3);
                       lv_obj_set_size(spinbox_Thermal_load_FAULT, 70, 25);
                       lv_obj_align(spinbox_Thermal_load_FAULT, LV_ALIGN_TOP_RIGHT, -70, 60);

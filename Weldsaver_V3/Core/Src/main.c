@@ -67,7 +67,51 @@ extern int outlet_temp;
 extern int outlet_temp1;
 extern int differential_temp;
 extern int differential_temp1;
+extern int thermal_load;
+extern int thermal_load1;
 
+
+float thermal_load_calculations=0;
+float m=0.00f;
+int initialtemp=24;
+
+
+
+extern int celcious_flag;
+extern int fahrenheit_flag;
+
+
+extern int  Normal_Flag;
+extern int Open_Flag;
+extern int Presize_Flag;
+
+
+float term1;
+float term2;
+float term3;
+float term4;
+float term5;
+float term6;
+//coolant_density_variables
+float temperature = 60.0;  // Example: Change this value as needed
+
+// Coefficients for the formula
+const float a0 = 999.83952;
+const float a1 = 16.945176;
+const float a2 = -7.9870401e-3;
+const float a3 = -46.170461e-6;
+const float a4 = 105.56302e-9;
+const float a5 = -280.54253e-12;
+
+
+// Step-by-step calculation of each term
+
+int mode = true;
+// Sum up all terms to calculate the density
+float density;
+
+extern float GPM;
+extern float GPM1;
 
 volatile uint32_t timerOverflowCount = 0;
 volatile bool timerExpired = false;
@@ -91,8 +135,8 @@ lv_obj_t* warning_lable1;
 #define PRESCALAR  41000
 
 
-#define MAX_VALUES 25
-#define MAX_VALUES1 25
+#define MAX_VALUES 20
+#define MAX_VALUES1 20
 
 #define  MAX_VALUES_flow 20
 #define MAX_VALUES_flow1 20
@@ -111,7 +155,7 @@ lv_obj_t* warning_lable1;
 // Declare a global variable to track the timeout period (in callback cycles)
 uint32_t no_pulse_timeout_counter = 0;
 uint32_t previous_capture_time = 0;  // Store the previous capture time
-float average_flow = 0.00f;           // Variable to store average flow
+//float average_flow = 50.00f;           // Variable to store average flow
 
 int stuck_counter = 0;   // Counter to track if flow is stuck
 int stuck_counter1 = 0;
@@ -151,6 +195,9 @@ uint64_t  sum;
          float average_flow1;
          int flow_count1 = 0;
 
+
+         float last_frequency = 0.00;
+         float last_frequency1 = 0.00;
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 /* USER CODE END PD */
@@ -194,7 +241,7 @@ void lv_example_dropdown_2(void);
 void lv_example_img_1(void);
 void show_text1(uint32_t adc_temperature , uint32_t adc_flow_rate, uint32_t adc_temperature_1,uint32_t adc_flow_rate_1);
 void toggle_image_visibility(void);
-void toggle_txt_visibility(void) ;
+void toggle_txt_visibility(void);
 void update_values(uint32_t adc_temperature ,uint32_t adc_flow_rate, uint32_t adc_temperature_1, uint32_t adc_flow_rate_1);
 //void show_text1(void);
 void lv_example_btn_1(void);
@@ -212,6 +259,8 @@ void trip_point_of_leak(void);
 
 void two_channels_adc_calculation(void);
 void stuck_logic(void);
+
+void leak_response_dropdown(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -261,7 +310,7 @@ int main(void)
 ////	timer10s_flag1=0;
 //}
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-     HAL_Init();
+    HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -312,6 +361,7 @@ int main(void)
 	  HAL_TIM_IC_Start_IT(&htim14,TIM_CHANNEL_1);
 
 	  HAL_TIM_Base_Start_IT(&htim2);
+//	  HAL_Delay(5000);
 	  HAL_TIM_Base_Start_IT(&htim3);
 
 //	  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);
@@ -359,6 +409,7 @@ int main(void)
 	 trip_point_of_leak();
 	 flow_settings();
 	 temp_settings();
+	 leak_response_dropdown();
     /* USER CODE BEGIN 3 */
 	 transmit_value_via_uart();
 	 lv_tick_inc(10);
@@ -396,7 +447,22 @@ void two_channels_adc_calculation(void)
 					         sum = 0;
 			  }
 
+				  if (celcious_flag)
+				  {
+					  temp1=(((average*0.00080566*1.232)-1)*1000)-39;
 
+					  temp1=((temp1-1000)/(1000*0.00391))-100;
+				  }
+
+					if (fahrenheit_flag)
+					{
+
+					  temp1=(((average*0.00080566*1.232)-1)*1000)-39;
+
+					  temp1=((temp1-1000)/(1000*0.00391))-100;
+
+					  temp1=(temp1 * 9/5) + 32;
+					}
 		  //adc1
 
 		  ADC_Select_CH8();
@@ -422,6 +488,19 @@ void two_channels_adc_calculation(void)
 		 				  count_adc1 = 0;
 		 				         sum1 = 0;
 		 		  }
+		 		  if (celcious_flag)
+		 		  {
+ 				  temp2=(((average1*0.00080566*1.232)-1)*1000)-39;
+
+	 				  temp2=((temp2-1000)/(1000*0.00391))-100;
+		 		  }
+					if (fahrenheit_flag)
+					{
+		 			temp2=(((average1*0.00080566*1.232)-1)*1000)-39;
+
+			 		temp2=((temp2-1000)/(1000*0.00391))-100;
+					temp2=(temp2 * 9/5) + 32;
+					}
 
 
 }
@@ -453,6 +532,39 @@ void trip_point_of_leak(void)
 }
 }
 
+void leak_response_dropdown(void)
+{
+	if  (Normal_Flag)
+	{
+    	if ((average_flow - average_flow1) >= 0)
+    		 		    {
+    		 toggle_image_visibility();
+    		 toggle_txt_visibility();
+    		 HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_SET);   //
+    		 HAL_Delay(10);
+	}
+	}
+	if ( Open_Flag)
+	{
+    	if ((average_flow - average_flow1) >= 1)
+    		 		    {
+    		 toggle_image_visibility();
+    		 toggle_txt_visibility();
+    		 HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
+    		 HAL_Delay(10);
+	}
+	}
+	if  (Presize_Flag)
+	{
+    	if ((average_flow - average_flow1) >= 1.50)
+    		 		    {
+    		 toggle_image_visibility();
+    		 toggle_txt_visibility();
+    		 HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
+    		 HAL_Delay(10);
+	}
+}
+}
 void stuck_logic(void)
 {
 	 if (average_flow == average_flow )
@@ -477,6 +589,12 @@ void stuck_logic(void)
 							   stuck_counter1 = 0;  // Reset stuck counter
 							}
 						}
+
+//
+//		if (average_flow1>=average_flow)
+//		{
+//			average_flow1=average_flow-
+//		}
 }
 
 void flow_settings(void)
@@ -489,10 +607,11 @@ void flow_settings(void)
     		 			 toggle_txt_visibility();
     		                            	}
     		    	//flow fault
-    		    	if (average_flow<flow_fault_value)
-    		    		{
-    		    		 NVIC_SystemReset();
-    		 		 }
+//    		    	if (average_flow<flow_fault_value)
+//    		    		{
+//    		    		 NVIC_SystemReset();
+//    		 		 }
+
 }
 
 
@@ -518,7 +637,7 @@ void temp_settings(void)
 //	else if (temp1-temp2>=differential_temp)
 //	{
 //		 toggle_image_visibility();
-//			 			toggle_txt_visibility_temp();
+//		 toggle_txt_visibility_temp();
 //	}
 //
 //	else if (temp1-temp2>=differential_temp1)
@@ -526,6 +645,30 @@ void temp_settings(void)
 //		{
 //			   	 NVIC_SystemReset();
 //			    }
+//
+
+
+//	thermal_load_settings
+
+	m=average_flow1*1/60;
+	thermal_load_calculations=m*4186*temp2-initialtemp;
+
+	if (thermal_load_calculations>=thermal_load)
+	{
+		 toggle_image_visibility();
+		 toggle_txt_visibility_temp();
+		 HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6, GPIO_PIN_RESET);   //
+		 HAL_Delay(10);
+	}
+
+	if (thermal_load_calculations>=thermal_load1)
+	{
+
+			   	 NVIC_SystemReset();
+
+	}
+
+	density = 999.84 * (1 -( temperature - 4)  *0.000214);
 
 
 }
@@ -546,9 +689,9 @@ char msg3[7];  // Buffer to hold the value (max 3 digits + null terminator)
 int len3 = 0;
 
 // Check if flow_warning_value is available (you can use a condition here to decide when to transmit)
-if (sensor_value != 0)
+if (flow_warning_value != 0)
 {  // Example: check if flow_warning_value is non-zero
-len = sprintf(msg, "%d\n", sensor_value);  // Format the flow_warning_value as a string
+len = sprintf(msg, "%d\n", flow_warning_value);  // Format the flow_warning_value as a string
 if (len > 0)
 {
 HAL_UART_Transmit(&huart1, (uint8_t*)msg, len, HAL_MAX_DELAY);  // Transmit it over UART1
@@ -564,9 +707,12 @@ if (len1 > 0)
 HAL_UART_Transmit(&huart1, (uint8_t*)msg1, len1, HAL_MAX_DELAY);  // Transmit it over UART1
 }
 }
+
+
 if (slow_leak_difference_value != 0)
 {  // Example: check if flow_warning_value is non-zero
-len2 = sprintf(msg2, "%d\n", slow_leak_difference_value);  // Format the flow_warning_value as a string
+len2 = sprintf(msg2, "%d\n", slow_leak_difference_value);
+// Format the flow_warning_value as a string
 if (len2 > 0)
 {
     HAL_UART_Transmit(&huart1, (uint8_t*)msg2, len, HAL_MAX_DELAY);  // Transmit it over UART1
@@ -577,11 +723,14 @@ if (len2 > 0)
 if (slow_leak_delay_value != 0)
 {  // Example: check if flow_fault_value is non-zero
 len3 = sprintf(msg3, "%d\n", slow_leak_delay_value);  // Format the flow_fault_value as a string
+
 if (len3 > 0)
 {
     HAL_UART_Transmit(&huart1, (uint8_t*)msg3, len1, HAL_MAX_DELAY);  // Transmit it over UART1
 }
 }
+
+
 }
 void toggle_image_visibility(void) {
     if (img_obj != NULL) {
@@ -594,7 +743,7 @@ void toggle_image_visibility(void) {
 
         }
         img_visible = !img_visible;  // Toggle the visibility flag
-//        HAL_Delay(50);
+        HAL_Delay(10);
 
     }
 }
@@ -619,7 +768,8 @@ void toggle_txt_visibility_off(void)
 }
 
 
-void toggle_txt_visibility(void) {
+void toggle_txt_visibility(void)
+{
     if (warning_lable != NULL) {
         // Toggle visibility based on the current state
         if (txt_visible) {
@@ -634,7 +784,8 @@ void toggle_txt_visibility(void) {
     }
 }
 
-void toggle_txt_visibility_temp(void) {
+void toggle_txt_visibility_temp(void)
+{
     if (warning_lable1 != NULL) {
         // Toggle visibility based on the current state
         if (txt_visible) {
@@ -669,6 +820,8 @@ static void event_handler_bypass_btn(lv_event_t * e)
                    // Valve 1 is ON, set RA5 pin
                    LV_LOG_USER("Valve 1 is ON. Setting RA5 pin...");
                    calculate_flow = false;
+   				toggle_image_visibility_off();
+   				toggle_txt_visibility_off();
                }
                else if(strcmp(buf, "Off") == 0) {
                    // Valve 1 is OFF, reset RA5 pin
@@ -727,139 +880,343 @@ if (__HAL_TIM_GET_FLAG(&htim2, TIM_FLAG_UPDATE) != RESET)
 }
 }
 
-
+//
+//
+//void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
+//{
+//    float refClock = TIMCLOCK / PRESCALAR;
+//
+//    // For TIM13 Channel 1
+//    if (htim->Instance == TIM13 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
+//    {
+//        if (Is_First_Captured_TIM13 == 0) // If the first rising edge is not captured
+//        {
+//            IC_Val1_TIM13 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // Read the first value
+//            Is_First_Captured_TIM13 = 1;  // Set the first captured as true
+//
+//            // Optional: Add validity check for the first captured value
+//            // Example: If the first captured value is suspiciously low or high, reset and wait for a valid first edge
+//            if (IC_Val1_TIM13 < MIN_VALID_CAPTURE || IC_Val1_TIM13 > MAX_VALID_CAPTURE)
+//            {
+//                Is_First_Captured_TIM13 = 0;  // Reset the flag, discard invalid capture
+//                return;  // Exit early and wait for a valid edge
+//            }
+//        }
+//        else  // If the first rising edge is captured, now we will capture the second edge
+//        {
+//            IC_Val2_TIM13 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // Read second value
+//
+//            // Calculate the difference between the two captured values
+//            if (IC_Val2_TIM13 > IC_Val1_TIM13)
+//            {
+//                Difference_TIM13 = IC_Val2_TIM13 - IC_Val1_TIM13;
+//            }
+//            else if (IC_Val1_TIM13 > IC_Val2_TIM13)
+//            {
+//                Difference_TIM13 = (0xffff - IC_Val1_TIM13) + IC_Val2_TIM13;
+//            }
+//
+//            // Optional: Add a check for an unusually large difference between captures
+//            if (Difference_TIM13 > MAX_VALID_PULSE_PERIOD)  // MAX_VALID_PULSE_PERIOD is the maximum period threshold
+//            {
+//                frequency_TIM13 = 0.0; // No valid pulse, set frequency to 0
+//            }
+//
+//            // Calculate the frequency and apply the LPM formula for inlet
+//            frequency_TIM13 = refClock / Difference_TIM13;
+////            frequency_TIM13 = (frequency_TIM13 * 0.1861) - 0.2;  // LPM formula adjustment
+//
+//            if (mode == true) {
+//                frequency_TIM13 = (frequency_TIM13 * 0.1861) - 0.2; // LPM formula
+//            } else if (mode == false) {
+//                frequency_TIM13 = ((frequency_TIM13 * 0.1861) - 0.2) * 0.264172; // GPM formula
+//            }
+//            frequency_TIM13 = 0.1 * frequency_TIM13 + 0.9 * last_frequency;
+//            last_frequency = frequency_TIM13;
+//            // Store the frequency in the flow_values array
+//            flow_values[flow_count] = frequency_TIM13;
+//
+//            // Update the sum and count for averaging
+//            flow_sum += frequency_TIM13;
+//            flow_count++;
+//
+//            if (flow_count >= MAX_VALUES_flow)
+//            {
+//                average_flow = (float)flow_sum / MAX_VALUES_flow;
+//                flow_count = 0;
+//                flow_sum = 0;
+//            }
+//
+//            // Reset average flow if it exceeds 50
+//            if (average_flow >= 50)
+//            {
+//                average_flow = 0.00;
+//            }
+//
+//            // Reset the timer counter to keep track of the next capture period
+//            __HAL_TIM_SET_COUNTER(htim, 0);  // Reset the counter
+//            Is_First_Captured_TIM13 = 0; // Reset the capture flag for the next cycle
+//        }
+//    }
+//
+//    // For TIM14 Channel 1
+//    else if (htim->Instance == TIM14 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
+//    {
+//        if (Is_First_Captured_TIM14 == 0) // If the first rising edge is not captured
+//        {
+//            IC_Val1_TIM14 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // Read the first value
+//            Is_First_Captured_TIM14 = 1;  // Set the first captured as true
+//
+//            // Optional: Add validity check for the first captured value
+//            if (IC_Val1_TIM14 < MIN_VALID_CAPTURE || IC_Val1_TIM14 > MAX_VALID_CAPTURE)
+//            {
+//                Is_First_Captured_TIM14 = 0;  // Reset the flag, discard invalid capture
+//                return;  // Exit early and wait for a valid edge
+//            }
+//        }
+//        else  // If the first rising edge is captured, now we will capture the second edge
+//        {
+//            IC_Val2_TIM14 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // Read second value
+//
+//            // Calculate the difference between the two captured values
+//            if (IC_Val2_TIM14 > IC_Val1_TIM14)
+//            {
+//                Difference_TIM14 = IC_Val2_TIM14 - IC_Val1_TIM14;
+//            }
+//            else if (IC_Val1_TIM14 > IC_Val2_TIM14)
+//            {
+//                Difference_TIM14 = (0xffff - IC_Val1_TIM14) + IC_Val2_TIM14;
+//            }
+//
+//            // Calculate the frequency and apply the LPM formula for inlet
+//            frequency_TIM14 = refClock / Difference_TIM14;
+//            frequency_TIM14 = (frequency_TIM14 * 0.1861) - 0.2;
+//
+//            if (mode == true)
+//            {
+//                frequency_TIM14 = (frequency_TIM14 * 0.1861) - 0.2; // LPM formula
+//            }
+//            else if (mode == false) {
+//                frequency_TIM14 = ((frequency_TIM14 * 0.1861) - 0.2) * 0.264172; // GPM formula
+//            }
+//
+//            frequency_TIM14 = 0.1 * frequency_TIM14 + 0.9 * last_frequency1;
+//            last_frequency1 = frequency_TIM14;
+//            // Store the frequency in the flow_values array
+//            flow_values1[flow_count1] = frequency_TIM14;
+//
+//            // Update the sum and count for averaging
+//            flow_sum1 += frequency_TIM14;
+//            flow_count1++;
+//
+//            if (flow_count1 >= MAX_VALUES_flow1)
+//            {
+//                average_flow1 = (float)flow_sum1 / MAX_VALUES_flow1;
+//                flow_count1 = 0;
+//                flow_sum1 = 0;
+//            }
+//
+//            // Reset average flow if it exceeds 50
+//            if (average_flow1 >= 50)
+//            {
+//                average_flow1 = 0.00;
+//            }
+//
+//            // Reset the timer counter to keep track of the next capture period
+//            __HAL_TIM_SET_COUNTER(htim, 0);  // Reset the counter
+//            Is_First_Captured_TIM14 = 0; // Reset the capture flag
+//        }
+//    }
+//
+//}
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
     float refClock = TIMCLOCK / PRESCALAR;
 
+    // Constants for noise filtering
+    const uint32_t MIN_VALID_PERIOD = 100;      // Minimum valid capture period
+    const uint32_t MAX_VALID_PERIOD = 60000;   // Maximum valid capture period
+    const float MAX_ALLOWED_CHANGE = 50.0;     // Maximum allowed change in frequency
+    const uint32_t MAX_CAPTURE_TIMEOUT = 1000; // Timeout in ms for valid capture
+
+    static uint32_t last_capture_time_TIM13 = 0;
+    static uint32_t last_capture_time_TIM14 = 0;
+
     // For TIM13 Channel 1
     if (htim->Instance == TIM13 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
     {
-        if (Is_First_Captured_TIM13 == 0) // If the first rising edge is not captured
-        {
-            IC_Val1_TIM13 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // Read the first value
-            Is_First_Captured_TIM13 = 1;  // Set the first captured as true
+        uint32_t current_time = HAL_GetTick();
 
-            // Optional: Add validity check for the first captured value
-            // Example: If the first captured value is suspiciously low or high, reset and wait for a valid first edge
-            if (IC_Val1_TIM13 < MIN_VALID_CAPTURE || IC_Val1_TIM13 > MAX_VALID_CAPTURE)
+        // Timeout handling
+        if ((current_time - last_capture_time_TIM13) > MAX_CAPTURE_TIMEOUT)
+        {
+            Is_First_Captured_TIM13 = 0;
+            __HAL_TIM_SET_COUNTER(htim, 0);
+        }
+        last_capture_time_TIM13 = current_time;
+
+        if (Is_First_Captured_TIM13 == 0) // First rising edge
+        {
+            IC_Val1_TIM13 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+            Is_First_Captured_TIM13 = 1;
+
+            // Discard invalid initial capture values
+            if (IC_Val1_TIM13 < MIN_VALID_PERIOD || IC_Val1_TIM13 > MAX_VALID_PERIOD)
             {
-                Is_First_Captured_TIM13 = 0;  // Reset the flag, discard invalid capture
-                return;  // Exit early and wait for a valid edge
+                Is_First_Captured_TIM13 = 0;
+                return;
             }
         }
-        else  // If the first rising edge is captured, now we will capture the second edge
+        else // Second rising edge
         {
-            IC_Val2_TIM13 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // Read second value
+            IC_Val2_TIM13 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
 
-            // Calculate the difference between the two captured values
+            // Calculate the difference
             if (IC_Val2_TIM13 > IC_Val1_TIM13)
-            {
                 Difference_TIM13 = IC_Val2_TIM13 - IC_Val1_TIM13;
-            }
-            else if (IC_Val1_TIM13 > IC_Val2_TIM13)
+            else
+                Difference_TIM13 = (0xFFFF - IC_Val1_TIM13) + IC_Val2_TIM13;
+
+            // Discard invalid differences
+            if (Difference_TIM13 < MIN_VALID_PERIOD || Difference_TIM13 > MAX_VALID_PERIOD)
             {
-                Difference_TIM13 = (0xffff - IC_Val1_TIM13) + IC_Val2_TIM13;
+                frequency_TIM13 = 0.0;
+                Is_First_Captured_TIM13 = 0;
+                __HAL_TIM_SET_COUNTER(htim, 0);
+                return;
             }
 
-            // Optional: Add a check for an unusually large difference between captures
-//            if (Difference_TIM13 > MAX_VALID_PULSE_PERIOD)  // MAX_VALID_PULSE_PERIOD is the maximum period threshold
-//            {
-//                frequency_TIM13 = 0.0; // No valid pulse, set frequency to 0
-//            }
-
-            // Calculate the frequency and apply the LPM formula for inlet
+            // Calculate frequency
             frequency_TIM13 = refClock / Difference_TIM13;
-            frequency_TIM13 = (frequency_TIM13 * 0.1861) - 0.2;  // LPM formula adjustment
 
-            // Store the frequency in the flow_values array
+            // Apply flow-specific formulas
+            if (mode)
+                frequency_TIM13 = (frequency_TIM13 * 0.1861) - 0.2; // LPM formula
+            else
+                frequency_TIM13 = ((frequency_TIM13 * 0.1861) - 0.2) * 0.264172; // GPM formula
+
+            // Apply exponential moving average
+            frequency_TIM13 = 0.1 * frequency_TIM13 + 0.9 * last_frequency;
+            last_frequency = frequency_TIM13;
+
+            // Check for large changes
+            if ((frequency_TIM13 - last_frequency) > MAX_ALLOWED_CHANGE)
+            {
+                Is_First_Captured_TIM13 = 0;
+                __HAL_TIM_SET_COUNTER(htim, 0);
+                return;
+            }
+
+            // Update flow values and averaging
             flow_values[flow_count] = frequency_TIM13;
-
-            // Update the sum and count for averaging
             flow_sum += frequency_TIM13;
             flow_count++;
 
             if (flow_count >= MAX_VALUES_flow)
             {
-                average_flow = (float)flow_sum / MAX_VALUES_flow;
+                average_flow = flow_sum / MAX_VALUES_flow;
                 flow_count = 0;
                 flow_sum = 0;
             }
 
             // Reset average flow if it exceeds 50
             if (average_flow >= 50)
-            {
-                average_flow = 0.00;
-            }
+                average_flow = 0.0;
 
-            // Reset the timer counter to keep track of the next capture period
-            __HAL_TIM_SET_COUNTER(htim, 0);  // Reset the counter
-            Is_First_Captured_TIM13 = 0; // Reset the capture flag for the next cycle
+            // Reset timer and flags
+            __HAL_TIM_SET_COUNTER(htim, 0);
+            Is_First_Captured_TIM13 = 0;
         }
     }
 
     // For TIM14 Channel 1
     else if (htim->Instance == TIM14 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
     {
-        if (Is_First_Captured_TIM14 == 0) // If the first rising edge is not captured
-        {
-            IC_Val1_TIM14 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // Read the first value
-            Is_First_Captured_TIM14 = 1;  // Set the first captured as true
+        uint32_t current_time = HAL_GetTick();
 
-            // Optional: Add validity check for the first captured value
-            if (IC_Val1_TIM14 < MIN_VALID_CAPTURE || IC_Val1_TIM14 > MAX_VALID_CAPTURE)
+        // Timeout handling
+        if ((current_time - last_capture_time_TIM14) > MAX_CAPTURE_TIMEOUT)
+        {
+            Is_First_Captured_TIM14 = 0;
+            __HAL_TIM_SET_COUNTER(htim, 0);
+        }
+        last_capture_time_TIM14 = current_time;
+
+        if (Is_First_Captured_TIM14 == 0) // First rising edge
+        {
+            IC_Val1_TIM14 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+            Is_First_Captured_TIM14 = 1;
+
+            // Discard invalid initial capture values
+            if (IC_Val1_TIM14 < MIN_VALID_PERIOD || IC_Val1_TIM14 > MAX_VALID_PERIOD)
             {
-                Is_First_Captured_TIM14 = 0;  // Reset the flag, discard invalid capture
-                return;  // Exit early and wait for a valid edge
+                Is_First_Captured_TIM14 = 0;
+                return;
             }
         }
-        else  // If the first rising edge is captured, now we will capture the second edge
+        else // Second rising edge
         {
-            IC_Val2_TIM14 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // Read second value
+            IC_Val2_TIM14 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
 
-            // Calculate the difference between the two captured values
+            // Calculate the difference
             if (IC_Val2_TIM14 > IC_Val1_TIM14)
-            {
                 Difference_TIM14 = IC_Val2_TIM14 - IC_Val1_TIM14;
-            }
-            else if (IC_Val1_TIM14 > IC_Val2_TIM14)
+            else
+                Difference_TIM14 = (0xFFFF - IC_Val1_TIM14) + IC_Val2_TIM14;
+
+            // Discard invalid differences
+            if (Difference_TIM14 < MIN_VALID_PERIOD || Difference_TIM14 > MAX_VALID_PERIOD)
             {
-                Difference_TIM14 = (0xffff - IC_Val1_TIM14) + IC_Val2_TIM14;
+                frequency_TIM14 = 0.0;
+                Is_First_Captured_TIM14 = 0;
+                __HAL_TIM_SET_COUNTER(htim, 0);
+                return;
             }
 
-            // Calculate the frequency and apply the LPM formula for inlet
+            // Calculate frequency
             frequency_TIM14 = refClock / Difference_TIM14;
-            frequency_TIM14 = (frequency_TIM14 * 0.1861) - 0.2;
 
-            // Store the frequency in the flow_values array
+            // Apply flow-specific formulas
+            if (mode)
+                frequency_TIM14 = (frequency_TIM14 * 0.1861) - 0.2; // LPM formula
+            else
+                frequency_TIM14 = ((frequency_TIM14 * 0.1861) - 0.2) * 0.264172; // GPM formula
+
+            // Apply exponential moving average
+            frequency_TIM14 = 0.1 * frequency_TIM14 + 0.9 * last_frequency1;
+            last_frequency1 = frequency_TIM14;
+
+            // Check for large changes
+            if ((frequency_TIM14 - last_frequency1) > MAX_ALLOWED_CHANGE)
+            {
+                Is_First_Captured_TIM14 = 0;
+                __HAL_TIM_SET_COUNTER(htim, 0);
+                return;
+            }
+
+            // Update flow values and averaging
             flow_values1[flow_count1] = frequency_TIM14;
-
-            // Update the sum and count for averaging
             flow_sum1 += frequency_TIM14;
             flow_count1++;
 
             if (flow_count1 >= MAX_VALUES_flow1)
             {
-                average_flow1 = (float)flow_sum1 / MAX_VALUES_flow1;
+                average_flow1 = flow_sum1 / MAX_VALUES_flow1;
                 flow_count1 = 0;
                 flow_sum1 = 0;
             }
 
             // Reset average flow if it exceeds 50
             if (average_flow1 >= 50)
-            {
-                average_flow1 = 0.00;
-            }
+                average_flow1 = 0.0;
 
-            // Reset the timer counter to keep track of the next capture period
-            __HAL_TIM_SET_COUNTER(htim, 0);  // Reset the counter
-            Is_First_Captured_TIM14 = 0; // Reset the capture flag
+            // Reset timer and flags
+            __HAL_TIM_SET_COUNTER(htim, 0);
+            Is_First_Captured_TIM14 = 0;
         }
     }
-
 }
-
 
 void SystemClock_Config(void)
 {
@@ -932,7 +1289,7 @@ static void MX_ADC3_Init(void)
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
+  hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
   hadc3.Init.Resolution = ADC_RESOLUTION_12B;
   hadc3.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc3.Init.ContinuousConvMode = ENABLE;
