@@ -1,0 +1,15 @@
+../lvgl/examples/widgets/dropdown/../../../src/hal/../draw/../misc/lv_color.h:608:26:lv_color_hex	24	static
+../lvgl/examples/widgets/dropdown/../../../src/hal/../draw/sw/../../core/lv_obj_pos.h:199:20:lv_obj_center	16	static
+../lvgl/examples/widgets/dropdown/../../../src/core/lv_obj.h:322:22:lv_obj_get_user_data	16	static
+../lvgl/examples/widgets/dropdown/../../../src/core/lv_disp.h:184:26:lv_scr_act	8	static
+../lvgl/examples/widgets/dropdown/../../../src/core/lv_disp.h:207:20:lv_scr_load	16	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:108:13:event_handler_Flow_3_parameters	64	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:186:13:return_event_handler	16	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:190:13:spinbox_event_handler	48	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:279:13:increment_temp_event_handler	24	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:348:13:decrement_temp_event_handler	24	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:418:13:event_handler	192	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1022:6:lv_example_btn_1	16	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1045:6:show_text1	168	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1090:6:update_values	160	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1116:6:lv_example_dropdown_2	4	static

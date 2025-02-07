@@ -1,0 +1,5 @@
+../lvgl/src/misc/lv_color.h:286:26:lv_color_make	1
+../lvgl/src/misc/lv_color.h:422:26:lv_color_black	1
+../lvgl/src/misc/lv_palette.c:35:12:lv_palette_main	2
+../lvgl/src/misc/lv_palette.c:54:12:lv_palette_lighten	4
+../lvgl/src/misc/lv_palette.c:93:12:lv_palette_darken	4

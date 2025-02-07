@@ -1,0 +1,8 @@
+../lvgl/examples/widgets/dropdown/../../../src/hal/../draw/../misc/lv_color.h:608:26:lv_color_hex	24	static
+../lvgl/examples/widgets/dropdown/../../../src/hal/../draw/sw/../../core/lv_obj_pos.h:199:20:lv_obj_center	16	static
+../lvgl/examples/widgets/dropdown/../../../src/core/lv_disp.h:184:26:lv_scr_act	8	static
+../Drivers/CMSIS/Include/core_cm7.h:2147:34:__NVIC_SystemReset	4	static,ignoring_inline_asm
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_1.c:12:13:event_handler	64	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_1.c:74:13:event_handler_reset_btn	24	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_1.c:92:6:lv_example_dropdown_1	32	static
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_1.c:189:6:show_text	40	static
