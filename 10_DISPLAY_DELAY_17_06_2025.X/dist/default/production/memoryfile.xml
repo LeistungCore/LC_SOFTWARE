@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/production\10_DISPLAY_DELAY_17_06_2025.X.production.hex">
+    <memory name="program">
+      <units>words</units>
+      <length>16384</length>
+      <used>4487</used>
+      <free>11897</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>2048</length>
+      <used>663</used>
+      <free>1385</free>
+    </memory>
+  </executable>
+</project>

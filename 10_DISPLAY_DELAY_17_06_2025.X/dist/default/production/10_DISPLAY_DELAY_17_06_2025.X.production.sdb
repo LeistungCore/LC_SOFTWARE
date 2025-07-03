@@ -1,0 +1,1226 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F15376 ]
+[d frameptr 6 ]
+"59 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/nvm/src/nvm.c
+[e E7747 . `uc
+NVM_OK 0
+NVM_ERROR 1
+]
+"163 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\main.c
+[e E8315 . `uc
+STAGE_0 0
+STAGE_1 1
+STAGE_2 2
+]
+"164
+[e E8320 . `uc
+STOP_CONTROLLER_MODE 0
+START_CONTROLLER_MODE 1
+]
+"206
+[e E8326 . `uc
+MODE_VOLTAGE 0
+MODE_FREQUENCY 1
+MODE_ON_DELAY 2
+MODE_OFF_DELAY 3
+MODE_SOFT_START_DELAY 4
+]
+"207
+[e E8333 . `uc
+MODE_NPN_SENSOR_I 0
+MODE_SENSOR_II 1
+MODE_PHOTO_SENSOR 2
+MODE_SPEED_CONTROL 3
+MODE_SPEED_A_B 4
+MODE_CONTROL_OUTPUT 5
+MODE_CURRENT_OUTPUT 6
+]
+"1335
+[e E8217 . `uc
+NVM_OK 0
+NVM_ERROR 1
+]
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"1177 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\doprnt.c
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+"1817
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+"9 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"253 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\main.c
+[v _setup_timer0 setup_timer0 `(v  1 e 1 0 ]
+"269
+[v _ADC_Init ADC_Init `(v  1 e 1 0 ]
+"292
+[v _control_led_and_7segment_FOR_MODE_VOLTAGE control_led_and_7segment_FOR_MODE_VOLTAGE `(v  1 e 1 0 ]
+"343
+[v _control_led_and_7segment_FOR_MODE_FREQUENCY control_led_and_7segment_FOR_MODE_FREQUENCY `(v  1 e 1 0 ]
+"429
+[v _control_led_and_7segment_FOR_MODE_ON_DELAY control_led_and_7segment_FOR_MODE_ON_DELAY `(v  1 e 1 0 ]
+"478
+[v _control_led_and_7segment_FOR_MODE_OFF_DELAY control_led_and_7segment_FOR_MODE_OFF_DELAY `(v  1 e 1 0 ]
+"528
+[v _control_led_and_7segment_FOR_MODE_SOFT_START_DELAY control_led_and_7segment_FOR_MODE_SOFT_START_DELAY `(v  1 e 1 0 ]
+"577
+[v _control_led_and_7segment_FOR_MODE_NPN_SENSOR_I control_led_and_7segment_FOR_MODE_NPN_SENSOR_I `(v  1 e 1 0 ]
+"619
+[v _control_led_and_7segment_FOR_MODE_SENSOR_II control_led_and_7segment_FOR_MODE_SENSOR_II `(v  1 e 1 0 ]
+"659
+[v _control_led_and_7segment_FOR_MODE_PHOTO_SENSOR control_led_and_7segment_FOR_MODE_PHOTO_SENSOR `(v  1 e 1 0 ]
+"678
+[v _control_led_and_7segment_FOR_MODE_SPEED_CONTROL control_led_and_7segment_FOR_MODE_SPEED_CONTROL `(v  1 e 1 0 ]
+"713
+[v _control_led_and_7segment_FOR_MODE_SPEED_A_B control_led_and_7segment_FOR_MODE_SPEED_A_B `(v  1 e 1 0 ]
+"768
+[v _control_led_and_7segment_FOR_MODE_CONTROL_OUTPUT control_led_and_7segment_FOR_MODE_CONTROL_OUTPUT `(v  1 e 1 0 ]
+"794
+[v _control_led_and_7segment_FOR_MODE_CURRENT_OUTPUT control_led_and_7segment_FOR_MODE_CURRENT_OUTPUT `(v  1 e 1 0 ]
+"807
+[v _control_led_and_7segment_FOR_MODE_STOP_CONTROLLER control_led_and_7segment_FOR_MODE_STOP_CONTROLLER `(v  1 e 1 0 ]
+"842
+[v _ISR ISR `II(v  1 e 1 0 ]
+"1108
+[v _updateMode updateMode `(v  1 e 1 0 ]
+"1204
+[v _updateLEDs updateLEDs `(v  1 e 1 0 ]
+"1297
+[v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
+"1375
+[v _main main `(v  1 e 1 0 ]
+"45 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/nvm/src/nvm.c
+[v _NVM_Initialize NVM_Initialize `(v  1 e 1 0 ]
+"71
+[v _NVM_StatusClear NVM_StatusClear `(v  1 e 1 0 ]
+"88
+[v _FLASH_Read FLASH_Read `(us  1 e 2 0 ]
+"103
+[v _FLASH_RowWrite FLASH_RowWrite `(E7747  1 e 1 0 ]
+"161
+[v _FLASH_PageErase FLASH_PageErase `(E7747  1 e 1 0 ]
+"287
+[v _NVM_ISR NVM_ISR `(v  1 e 1 0 ]
+"39 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/clock.c
+[v _CLOCK_Initialize CLOCK_Initialize `(v  1 e 1 0 ]
+"40 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/interrupt.c
+[v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
+"94
+[v _INT_CallBack INT_CallBack `(v  1 e 1 0 ]
+"103
+[v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
+"107
+[v _INT_DefaultInterruptHandler INT_DefaultInterruptHandler `(v  1 e 1 0 ]
+"38 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/pins.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"39 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/system.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"120 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/uart/src/eusart1.c
+[v _EUSART1_Initialize EUSART1_Initialize `(v  1 e 1 0 ]
+"156
+[v _EUSART1_Deinitialize EUSART1_Deinitialize `(v  1 e 1 0 ]
+"179
+[v _EUSART1_TransmitEnable EUSART1_TransmitEnable `(v  1 e 1 0 ]
+"184
+[v _EUSART1_TransmitDisable EUSART1_TransmitDisable `(v  1 e 1 0 ]
+"209
+[v _EUSART1_AutoBaudSet EUSART1_AutoBaudSet `(v  1 e 1 0 ]
+"221
+[v _EUSART1_AutoBaudQuery EUSART1_AutoBaudQuery `(a  1 e 1 0 ]
+"256
+[v _EUSART1_IsRxReady EUSART1_IsRxReady `(a  1 e 1 0 ]
+"261
+[v _EUSART1_IsTxReady EUSART1_IsTxReady `(a  1 e 1 0 ]
+"266
+[v _EUSART1_IsTxDone EUSART1_IsTxDone `(a  1 e 1 0 ]
+"271
+[v _EUSART1_ErrorGet EUSART1_ErrorGet `(ui  1 e 2 0 ]
+"277
+[v _EUSART1_Read EUSART1_Read `(uc  1 e 1 0 ]
+"300
+[v _EUSART1_ReceiveISR EUSART1_ReceiveISR `(v  1 e 1 0 ]
+"345
+[v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]
+"369
+[v _EUSART1_TransmitISR EUSART1_TransmitISR `(v  1 e 1 0 ]
+"401
+[v _putch putch `(v  1 e 1 0 ]
+"410
+[v _EUSART1_DefaultFramingErrorCallback EUSART1_DefaultFramingErrorCallback `(v  1 s 1 EUSART1_DefaultFramingErrorCallback ]
+"415
+[v _EUSART1_DefaultOverrunErrorCallback EUSART1_DefaultOverrunErrorCallback `(v  1 s 1 EUSART1_DefaultOverrunErrorCallback ]
+"422
+[v _EUSART1_FramingErrorCallbackRegister EUSART1_FramingErrorCallbackRegister `(v  1 e 1 0 ]
+"430
+[v _EUSART1_OverrunErrorCallbackRegister EUSART1_OverrunErrorCallbackRegister `(v  1 e 1 0 ]
+"438
+[v _EUSART1_RxCompleteCallbackRegister EUSART1_RxCompleteCallbackRegister `(v  1 e 1 0 ]
+"446
+[v _EUSART1_TxCompleteCallbackRegister EUSART1_TxCompleteCallbackRegister `(v  1 e 1 0 ]
+[s S94 . 1 `uc 1 INTEDG 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"426 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f15376.h
+[u S99 . 1 `S94 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES99  1 e 1 @11 ]
+[s S943 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+"463
+[u S952 . 1 `S943 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES952  1 e 1 @12 ]
+[s S1052 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"525
+[u S1061 . 1 `S1052 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES1061  1 e 1 @13 ]
+[s S1031 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"587
+[u S1040 . 1 `S1031 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES1040  1 e 1 @14 ]
+"632
+[v _PORTD PORTD `VEuc  1 e 1 @15 ]
+[s S1018 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"707
+[u S1023 . 1 `S1018 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES1023  1 e 1 @16 ]
+"732
+[v _TRISA TRISA `VEuc  1 e 1 @18 ]
+[s S1255 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+`uc 1 TRISA7 1 0 :1:7 
+]
+"749
+[u S1264 . 1 `S1255 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES1264  1 e 1 @18 ]
+"794
+[v _TRISB TRISB `VEuc  1 e 1 @19 ]
+[s S1342 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"811
+[u S1351 . 1 `S1342 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES1351  1 e 1 @19 ]
+"856
+[v _TRISC TRISC `VEuc  1 e 1 @20 ]
+[s S1234 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"873
+[u S1243 . 1 `S1234 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES1243  1 e 1 @20 ]
+"918
+[v _TRISD TRISD `VEuc  1 e 1 @21 ]
+[s S1167 . 1 `uc 1 TRISD0 1 0 :1:0 
+`uc 1 TRISD1 1 0 :1:1 
+`uc 1 TRISD2 1 0 :1:2 
+`uc 1 TRISD3 1 0 :1:3 
+`uc 1 TRISD4 1 0 :1:4 
+`uc 1 TRISD5 1 0 :1:5 
+`uc 1 TRISD6 1 0 :1:6 
+`uc 1 TRISD7 1 0 :1:7 
+]
+"935
+[u S1176 . 1 `S1167 1 . 1 0 ]
+[v _TRISDbits TRISDbits `VES1176  1 e 1 @21 ]
+"980
+[v _TRISE TRISE `VEuc  1 e 1 @22 ]
+[s S1276 . 1 `uc 1 TRISE0 1 0 :1:0 
+`uc 1 TRISE1 1 0 :1:1 
+`uc 1 TRISE2 1 0 :1:2 
+]
+"992
+[u S1280 . 1 `S1276 1 . 1 0 ]
+[v _TRISEbits TRISEbits `VES1280  1 e 1 @22 ]
+"1012
+[v _LATA LATA `VEuc  1 e 1 @24 ]
+"1074
+[v _LATB LATB `VEuc  1 e 1 @25 ]
+[s S997 . 1 `uc 1 LATB0 1 0 :1:0 
+`uc 1 LATB1 1 0 :1:1 
+`uc 1 LATB2 1 0 :1:2 
+`uc 1 LATB3 1 0 :1:3 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"1091
+[u S1006 . 1 `S997 1 . 1 0 ]
+[v _LATBbits LATBbits `VES1006  1 e 1 @25 ]
+"1136
+[v _LATC LATC `VEuc  1 e 1 @26 ]
+[s S1405 . 1 `uc 1 LATC0 1 0 :1:0 
+`uc 1 LATC1 1 0 :1:1 
+`uc 1 LATC2 1 0 :1:2 
+`uc 1 LATC3 1 0 :1:3 
+`uc 1 LATC4 1 0 :1:4 
+`uc 1 LATC5 1 0 :1:5 
+`uc 1 LATC6 1 0 :1:6 
+`uc 1 LATC7 1 0 :1:7 
+]
+"1153
+[u S1414 . 1 `S1405 1 . 1 0 ]
+[v _LATCbits LATCbits `VES1414  1 e 1 @26 ]
+"1198
+[v _LATD LATD `VEuc  1 e 1 @27 ]
+[s S964 . 1 `uc 1 LATD0 1 0 :1:0 
+`uc 1 LATD1 1 0 :1:1 
+`uc 1 LATD2 1 0 :1:2 
+`uc 1 LATD3 1 0 :1:3 
+`uc 1 LATD4 1 0 :1:4 
+`uc 1 LATD5 1 0 :1:5 
+`uc 1 LATD6 1 0 :1:6 
+`uc 1 LATD7 1 0 :1:7 
+]
+"1215
+[u S973 . 1 `S964 1 . 1 0 ]
+[v _LATDbits LATDbits `VES973  1 e 1 @27 ]
+"1260
+[v _LATE LATE `VEuc  1 e 1 @28 ]
+[s S985 . 1 `uc 1 LATE0 1 0 :1:0 
+`uc 1 LATE1 1 0 :1:1 
+`uc 1 LATE2 1 0 :1:2 
+]
+"1272
+[u S989 . 1 `S985 1 . 1 0 ]
+[v _LATEbits LATEbits `VES989  1 e 1 @28 ]
+"1299
+[v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
+"1369
+[v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
+"1439
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
+[s S911 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GOnDONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 CHS4 1 0 :1:6 
+`uc 1 CHS5 1 0 :1:7 
+]
+"1461
+[s S920 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS 1 0 :6:2 
+]
+[u S924 . 1 `S911 1 . 1 0 `S920 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES924  1 e 1 @157 ]
+"1516
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
+"1634
+[v _RC1REG RC1REG `VEuc  1 e 1 @281 ]
+"1688
+[v _TX1REG TX1REG `VEuc  1 e 1 @282 ]
+"1754
+[v _SP1BRGL SP1BRGL `VEuc  1 e 1 @283 ]
+"1808
+[v _SP1BRGH SP1BRGH `VEuc  1 e 1 @284 ]
+"1862
+[v _RC1STA RC1STA `VEuc  1 e 1 @285 ]
+[s S537 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"1888
+[u S546 . 1 `S537 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES546  1 e 1 @285 ]
+"2042
+[v _TX1STA TX1STA `VEuc  1 e 1 @286 ]
+[s S558 . 1 `uc 1 TX9D 1 0 :1:0 
+`uc 1 TRMT 1 0 :1:1 
+`uc 1 BRGH 1 0 :1:2 
+`uc 1 SENDB 1 0 :1:3 
+`uc 1 SYNC 1 0 :1:4 
+`uc 1 TXEN 1 0 :1:5 
+`uc 1 TX9 1 0 :1:6 
+`uc 1 CSRC 1 0 :1:7 
+]
+"2068
+[u S567 . 1 `S558 1 . 1 0 ]
+[v _TX1STAbits TX1STAbits `VES567  1 e 1 @286 ]
+"2222
+[v _BAUD1CON BAUD1CON `VEuc  1 e 1 @287 ]
+[s S579 . 1 `uc 1 ABDEN 1 0 :1:0 
+`uc 1 WUE 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 BRG16 1 0 :1:3 
+`uc 1 SCKP 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 RCIDL 1 0 :1:6 
+`uc 1 ABDOVF 1 0 :1:7 
+]
+"2256
+[u S588 . 1 `S579 1 . 1 0 ]
+[v _BAUD1CONbits BAUD1CONbits `VES588  1 e 1 @287 ]
+"7957
+[v _TMR0L TMR0L `VEuc  1 e 1 @1436 ]
+[s S788 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+`uc 1 T016BIT 1 0 :1:4 
+`uc 1 T0OUT 1 0 :1:5 
+`uc 1 T0OE 1 0 :1:6 
+`uc 1 T0EN 1 0 :1:7 
+]
+"8369
+[s S794 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+`uc 1 T0OUTPS1 1 0 :1:1 
+`uc 1 T0OUTPS2 1 0 :1:2 
+`uc 1 T0OUTPS3 1 0 :1:3 
+]
+[u S799 . 1 `S788 1 . 1 0 `S794 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES799  1 e 1 @1438 ]
+[s S814 . 1 `uc 1 T0CKPS 1 0 :4:0 
+`uc 1 T0ASYNC 1 0 :1:4 
+`uc 1 T0CS 1 0 :3:5 
+]
+"8450
+[s S818 . 1 `uc 1 T0CKPS0 1 0 :1:0 
+`uc 1 T0CKPS1 1 0 :1:1 
+`uc 1 T0CKPS2 1 0 :1:2 
+`uc 1 T0CKPS3 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 T0CS0 1 0 :1:5 
+`uc 1 T0CS1 1 0 :1:6 
+`uc 1 T0CS2 1 0 :1:7 
+]
+[s S827 . 1 `uc 1 T0PS0 1 0 :1:0 
+`uc 1 T0PS1 1 0 :1:1 
+`uc 1 T0PS2 1 0 :1:2 
+`uc 1 T0PS3 1 0 :1:3 
+]
+[s S832 . 1 `uc 1 T0PS 1 0 :4:0 
+]
+[u S834 . 1 `S814 1 . 1 0 `S818 1 . 1 0 `S827 1 . 1 0 `S832 1 . 1 0 ]
+[v _T0CON1bits T0CON1bits `VES834  1 e 1 @1439 ]
+[s S196 . 1 `uc 1 INTF 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIF 1 0 :1:4 
+`uc 1 TMR0IF 1 0 :1:5 
+]
+"9280
+[u S201 . 1 `S196 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES201  1 e 1 @1804 ]
+[s S1126 . 1 `uc 1 SSP1IF 1 0 :1:0 
+`uc 1 BCL1IF 1 0 :1:1 
+`uc 1 SSP2IF 1 0 :1:2 
+`uc 1 BCL2IF 1 0 :1:3 
+`uc 1 TX1IF 1 0 :1:4 
+`uc 1 RC1IF 1 0 :1:5 
+`uc 1 TX2IF 1 0 :1:6 
+`uc 1 RC2IF 1 0 :1:7 
+]
+"9389
+[u S1135 . 1 `S1126 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES1135  1 e 1 @1807 ]
+[s S28 . 1 `uc 1 CWG1IF 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 NCO1IF 1 0 :1:4 
+`uc 1 NVMIF 1 0 :1:5 
+]
+"9548
+[s S33 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 NCOIF 1 0 :1:4 
+]
+[u S36 . 1 `S28 1 . 1 0 `S33 1 . 1 0 ]
+[v _PIR7bits PIR7bits `VES36  1 e 1 @1811 ]
+[s S869 . 1 `uc 1 INTE 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+"9586
+[u S874 . 1 `S869 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES874  1 e 1 @1814 ]
+[s S495 . 1 `uc 1 SSP1IE 1 0 :1:0 
+`uc 1 BCL1IE 1 0 :1:1 
+`uc 1 SSP2IE 1 0 :1:2 
+`uc 1 BCL2IE 1 0 :1:3 
+`uc 1 TX1IE 1 0 :1:4 
+`uc 1 RC1IE 1 0 :1:5 
+`uc 1 TX2IE 1 0 :1:6 
+`uc 1 RC2IE 1 0 :1:7 
+]
+"9695
+[u S504 . 1 `S495 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES504  1 e 1 @1817 ]
+[s S48 . 1 `uc 1 CWG1IE 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 NCO1IE 1 0 :1:4 
+`uc 1 NVMIE 1 0 :1:5 
+]
+"9854
+[s S53 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 NCOIE 1 0 :1:4 
+]
+[u S56 . 1 `S48 1 . 1 0 `S53 1 . 1 0 ]
+[v _PIE7bits PIE7bits `VES56  1 e 1 @1821 ]
+"10796
+[v _NVMADRL NVMADRL `VEuc  1 e 1 @2074 ]
+"10858
+[v _NVMADRH NVMADRH `VEuc  1 e 1 @2075 ]
+"10921
+[v _NVMDATL NVMDATL `VEuc  1 e 1 @2076 ]
+"10983
+[v _NVMDATH NVMDATH `VEuc  1 e 1 @2077 ]
+[s S68 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 WREN 1 0 :1:2 
+`uc 1 WRERR 1 0 :1:3 
+`uc 1 FREE 1 0 :1:4 
+`uc 1 LWLO 1 0 :1:5 
+`uc 1 NVMREGS 1 0 :1:6 
+]
+"11049
+[u S76 . 1 `S68 1 . 1 0 ]
+[v _NVMCON1bits NVMCON1bits `VES76  1 e 1 @2078 ]
+"11089
+[v _NVMCON2 NVMCON2 `VEuc  1 e 1 @2079 ]
+"11174
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @2189 ]
+"11314
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @2191 ]
+"11411
+[v _OSCEN OSCEN `VEuc  1 e 1 @2193 ]
+"11462
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2194 ]
+"11520
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2195 ]
+"18457
+[v _RX1DTPPS RX1DTPPS `VEuc  1 e 1 @7883 ]
+"19701
+[v _RC7PPS RC7PPS `VEuc  1 e 1 @7975 ]
+"20229
+[v _ANSELA ANSELA `VEuc  1 e 1 @7992 ]
+[s S1190 . 1 `uc 1 ANSA0 1 0 :1:0 
+`uc 1 ANSA1 1 0 :1:1 
+`uc 1 ANSA2 1 0 :1:2 
+`uc 1 ANSA3 1 0 :1:3 
+`uc 1 ANSA4 1 0 :1:4 
+`uc 1 ANSA5 1 0 :1:5 
+`uc 1 ANSA6 1 0 :1:6 
+`uc 1 ANSA7 1 0 :1:7 
+]
+"20246
+[u S1199 . 1 `S1190 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES1199  1 e 1 @7992 ]
+"20291
+[v _WPUA WPUA `VEuc  1 e 1 @7993 ]
+[s S1211 . 1 `uc 1 WPUA0 1 0 :1:0 
+`uc 1 WPUA1 1 0 :1:1 
+`uc 1 WPUA2 1 0 :1:2 
+`uc 1 WPUA3 1 0 :1:3 
+`uc 1 WPUA4 1 0 :1:4 
+`uc 1 WPUA5 1 0 :1:5 
+`uc 1 WPUA6 1 0 :1:6 
+`uc 1 WPUA7 1 0 :1:7 
+]
+"20308
+[u S1220 . 1 `S1211 1 . 1 0 ]
+[v _WPUAbits WPUAbits `VES1220  1 e 1 @7993 ]
+"20353
+[v _ODCONA ODCONA `VEuc  1 e 1 @7994 ]
+"20415
+[v _SLRCONA SLRCONA `VEuc  1 e 1 @7995 ]
+"20477
+[v _INLVLA INLVLA `VEuc  1 e 1 @7996 ]
+"20539
+[v _IOCAP IOCAP `VEuc  1 e 1 @7997 ]
+"20601
+[v _IOCAN IOCAN `VEuc  1 e 1 @7998 ]
+"20663
+[v _IOCAF IOCAF `VEuc  1 e 1 @7999 ]
+"20725
+[v _ANSELB ANSELB `VEuc  1 e 1 @8003 ]
+[s S1363 . 1 `uc 1 ANSB0 1 0 :1:0 
+`uc 1 ANSB1 1 0 :1:1 
+`uc 1 ANSB2 1 0 :1:2 
+`uc 1 ANSB3 1 0 :1:3 
+`uc 1 ANSB4 1 0 :1:4 
+`uc 1 ANSB5 1 0 :1:5 
+`uc 1 ANSB6 1 0 :1:6 
+`uc 1 ANSB7 1 0 :1:7 
+]
+"20742
+[u S1372 . 1 `S1363 1 . 1 0 ]
+[v _ANSELBbits ANSELBbits `VES1372  1 e 1 @8003 ]
+"20787
+[v _WPUB WPUB `VEuc  1 e 1 @8004 ]
+[s S1384 . 1 `uc 1 WPUB0 1 0 :1:0 
+`uc 1 WPUB1 1 0 :1:1 
+`uc 1 WPUB2 1 0 :1:2 
+`uc 1 WPUB3 1 0 :1:3 
+`uc 1 WPUB4 1 0 :1:4 
+`uc 1 WPUB5 1 0 :1:5 
+`uc 1 WPUB6 1 0 :1:6 
+`uc 1 WPUB7 1 0 :1:7 
+]
+"20804
+[u S1393 . 1 `S1384 1 . 1 0 ]
+[v _WPUBbits WPUBbits `VES1393  1 e 1 @8004 ]
+"20849
+[v _ODCONB ODCONB `VEuc  1 e 1 @8005 ]
+"20911
+[v _SLRCONB SLRCONB `VEuc  1 e 1 @8006 ]
+"20973
+[v _INLVLB INLVLB `VEuc  1 e 1 @8007 ]
+"21035
+[v _IOCBP IOCBP `VEuc  1 e 1 @8008 ]
+"21097
+[v _IOCBN IOCBN `VEuc  1 e 1 @8009 ]
+"21159
+[v _IOCBF IOCBF `VEuc  1 e 1 @8010 ]
+"21221
+[v _ANSELC ANSELC `VEuc  1 e 1 @8014 ]
+[s S1300 . 1 `uc 1 ANSC0 1 0 :1:0 
+`uc 1 ANSC1 1 0 :1:1 
+`uc 1 ANSC2 1 0 :1:2 
+`uc 1 ANSC3 1 0 :1:3 
+`uc 1 ANSC4 1 0 :1:4 
+`uc 1 ANSC5 1 0 :1:5 
+`uc 1 ANSC6 1 0 :1:6 
+`uc 1 ANSC7 1 0 :1:7 
+]
+"21238
+[u S1309 . 1 `S1300 1 . 1 0 ]
+[v _ANSELCbits ANSELCbits `VES1309  1 e 1 @8014 ]
+"21283
+[v _WPUC WPUC `VEuc  1 e 1 @8015 ]
+[s S1321 . 1 `uc 1 WPUC0 1 0 :1:0 
+`uc 1 WPUC1 1 0 :1:1 
+`uc 1 WPUC2 1 0 :1:2 
+`uc 1 WPUC3 1 0 :1:3 
+`uc 1 WPUC4 1 0 :1:4 
+`uc 1 WPUC5 1 0 :1:5 
+`uc 1 WPUC6 1 0 :1:6 
+`uc 1 WPUC7 1 0 :1:7 
+]
+"21300
+[u S1330 . 1 `S1321 1 . 1 0 ]
+[v _WPUCbits WPUCbits `VES1330  1 e 1 @8015 ]
+"21345
+[v _ODCONC ODCONC `VEuc  1 e 1 @8016 ]
+"21407
+[v _SLRCONC SLRCONC `VEuc  1 e 1 @8017 ]
+"21469
+[v _INLVLC INLVLC `VEuc  1 e 1 @8018 ]
+"21531
+[v _IOCCP IOCCP `VEuc  1 e 1 @8019 ]
+"21593
+[v _IOCCN IOCCN `VEuc  1 e 1 @8020 ]
+"21655
+[v _IOCCF IOCCF `VEuc  1 e 1 @8021 ]
+"21717
+[v _ANSELD ANSELD `VEuc  1 e 1 @8025 ]
+"21779
+[v _WPUD WPUD `VEuc  1 e 1 @8026 ]
+"21841
+[v _ODCOND ODCOND `VEuc  1 e 1 @8027 ]
+"21903
+[v _SLRCOND SLRCOND `VEuc  1 e 1 @8028 ]
+"21965
+[v _INLVLD INLVLD `VEuc  1 e 1 @8029 ]
+"22027
+[v _ANSELE ANSELE `VEuc  1 e 1 @8036 ]
+[s S891 . 1 `uc 1 ANSE0 1 0 :1:0 
+`uc 1 ANSE1 1 0 :1:1 
+`uc 1 ANSE2 1 0 :1:2 
+]
+"22039
+[u S895 . 1 `S891 1 . 1 0 ]
+[v _ANSELEbits ANSELEbits `VES895  1 e 1 @8036 ]
+"22059
+[v _WPUE WPUE `VEuc  1 e 1 @8037 ]
+[s S1287 . 1 `uc 1 WPUE0 1 0 :1:0 
+`uc 1 WPUE1 1 0 :1:1 
+`uc 1 WPUE2 1 0 :1:2 
+`uc 1 WPUE3 1 0 :1:3 
+]
+"22072
+[u S1292 . 1 `S1287 1 . 1 0 ]
+[v _WPUEbits WPUEbits `VES1292  1 e 1 @8037 ]
+"22097
+[v _ODCONE ODCONE `VEuc  1 e 1 @8038 ]
+"22129
+[v _SLRCONE SLRCONE `VEuc  1 e 1 @8039 ]
+"22161
+[v _INLVLE INLVLE `VEuc  1 e 1 @8040 ]
+"22199
+[v _IOCEP IOCEP `VEuc  1 e 1 @8041 ]
+"22220
+[v _IOCEN IOCEN `VEuc  1 e 1 @8042 ]
+"22241
+[v _IOCEF IOCEF `VEuc  1 e 1 @8043 ]
+"22734
+[v _ADON ADON `VEb  1 e 0 @1256 ]
+"26163
+[v _RB7 RB7 `VEb  1 e 0 @111 ]
+"26514
+[v _RE1 RE1 `VEb  1 e 0 @129 ]
+"27504
+[v _TRISA3 TRISA3 `VEb  1 e 0 @147 ]
+"27510
+[v _TRISA5 TRISA5 `VEb  1 e 0 @149 ]
+"27591
+[v _TRISE0 TRISE0 `VEb  1 e 0 @176 ]
+"153 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\doprnt.c
+[v _prec prec `i  1 s 2 prec ]
+[v _width width `i  1 s 2 width ]
+"154
+[v _flags flags `uc  1 s 1 flags ]
+"185
+[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
+"49 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\main.c
+[v _VOLTAGE VOLTAGE `uc  1 e 1 0 ]
+"50
+[v _Output_VTG_Stop Output_VTG_Stop `uc  1 e 1 0 ]
+"51
+[v _FREQUENCY FREQUENCY `us  1 e 2 0 ]
+[v _STOP_FREQ STOP_FREQ `us  1 e 2 0 ]
+"52
+[v _ON_Delay ON_Delay `ui  1 e 2 0 ]
+"53
+[v _OFF_Delay OFF_Delay `ui  1 e 2 0 ]
+"54
+[v _SOFT_START_Delay SOFT_START_Delay `uc  1 e 1 0 ]
+"55
+[v _soft_start_step_interval soft_start_step_interval `uc  1 e 1 0 ]
+"59
+[v _NPN_Sensor_1 NPN_Sensor_1 `VEa  1 e 1 0 ]
+"60
+[v _NPN_Sensor_2 NPN_Sensor_2 `VEa  1 e 1 0 ]
+"61
+[v _PhotoSensor_Flag PhotoSensor_Flag `VEa  1 e 1 0 ]
+"63
+[v _Speed_A Speed_A `uc  1 e 1 0 ]
+"64
+[v _Speed_B Speed_B `uc  1 e 1 0 ]
+"65
+[v _Control_Output Control_Output `uc  1 e 1 0 ]
+"69
+[v _StartSoftDelay StartSoftDelay `VEuc  1 e 1 0 ]
+"70
+[v _TMR_SoftDelay TMR_SoftDelay `VEui  1 e 2 0 ]
+"71
+[v _soft_start_voltage soft_start_voltage `VEui  1 e 2 0 ]
+"72
+[v _SoftStart_Completed SoftStart_Completed `VEuc  1 e 1 0 ]
+"74
+[v _TMR_On_Delay TMR_On_Delay `ui  1 e 2 0 ]
+"75
+[v _TMR_Off_Delay TMR_Off_Delay `ui  1 e 2 0 ]
+"76
+[v _ON_Delay_Flag ON_Delay_Flag `uc  1 e 1 0 ]
+"77
+[v _OFF_Delay_Flag OFF_Delay_Flag `uc  1 e 1 0 ]
+"78
+[v _Stop_Controller Stop_Controller `uc  1 e 1 0 ]
+"79
+[v _buffer buffer `[200]uc  1 e 200 @10024 ]
+"85
+[v _binary_pattern binary_pattern `DC[36]uc  1 e 36 0 ]
+"126
+[v _digits_1 digits_1 `[5]ui  1 e 10 0 ]
+"127
+[v _digits_2 digits_2 `[5]ui  1 e 10 0 ]
+"128
+[v _digits_3 digits_3 `[5]ui  1 e 10 0 ]
+"129
+[v _digits_4 digits_4 `[5]ui  1 e 10 0 ]
+"130
+[v _digits_5 digits_5 `[5]ui  1 e 10 0 ]
+"131
+[v _digits_6 digits_6 `[5]ui  1 e 10 0 ]
+"132
+[v _digits_7 digits_7 `[5]ui  1 e 10 0 ]
+"133
+[v _digits_8 digits_8 `[5]ui  1 e 10 0 ]
+"134
+[v _digits_9 digits_9 `[5]ui  1 e 10 0 ]
+"135
+[v _digits_10 digits_10 `[5]ui  1 e 10 0 ]
+"136
+[v _digits_11 digits_11 `[5]ui  1 e 10 0 ]
+"137
+[v _digits_12 digits_12 `[5]ui  1 e 10 0 ]
+"140
+[v _digits_15 digits_15 `[5]ui  1 e 10 0 ]
+"142
+[v _display_digits display_digits `uc  1 e 1 0 ]
+"143
+[v _segment_pattern segment_pattern `uc  1 e 1 0 ]
+"144
+[v _current_digit current_digit `uc  1 e 1 0 ]
+[v _UpdateModeDelay UpdateModeDelay `uc  1 e 1 0 ]
+"145
+[v _flag flag `ui  1 e 2 0 ]
+"163
+[v _currentStage currentStage `E8315  1 e 1 0 ]
+"164
+[v _currentMode currentMode `E8320  1 e 1 0 ]
+[s S759 . 14 `uc 1 VOLTAGE 1 0 `uc 1 Output_VTG_Stop 1 1 `uc 1 FREQUENCY 1 2 `uc 1 ON_Delay 1 3 `uc 1 OFF_Delay 1 4 `uc 1 SOFT_Delay 1 5 `uc 1 NPN_Sensor_1 1 6 `uc 1 NPN_Sensor_2 1 7 `uc 1 Potentiometer_VTG 1 8 `uc 1 Control_Output 1 9 `uc 1 Speed_A 1 10 `uc 1 Speed_B 1 11 `uc 1 PhotoSensor_Flag 1 12 `uc 1 Current_Out 1 13 ]
+"203
+[v _systemData systemData `S759  1 e 14 0 ]
+"206
+[v _currentStage1Mode currentStage1Mode `E8326  1 e 1 0 ]
+"207
+[v _currentStage2Mode currentStage2Mode `E8333  1 e 1 0 ]
+"210
+[v _pressDurationSettingSwitch pressDurationSettingSwitch `VEus  1 e 2 0 ]
+"211
+[v _pressDurationSimultaneous pressDurationSimultaneous `VEus  1 e 2 0 ]
+"212
+[v _uartsendcount uartsendcount `VEus  1 e 2 0 ]
+"213
+[v _longPressDetectedSettingSwitch longPressDetectedSettingSwitch `VEa  1 e 1 0 ]
+"214
+[v _longPressDetectedSimultaneous longPressDetectedSimultaneous `VEa  1 e 1 0 ]
+"215
+[v _shortPressDetected shortPressDetected `VEa  1 e 1 0 ]
+"216
+[v _settingSwitchReleased settingSwitchReleased `VEa  1 e 1 0 ]
+"217
+[v _DebounceDelay DebounceDelay `uc  1 e 1 0 ]
+[v _DebounceDelay_Decrement DebounceDelay_Decrement `uc  1 e 1 0 ]
+"218
+[v _StartDebounceDelayTimer StartDebounceDelayTimer `VEa  1 e 1 0 ]
+"219
+[v _DebounceCompleted DebounceCompleted `VEa  1 e 1 0 ]
+"220
+[v _StartDebounceDelayTimer_Decrement StartDebounceDelayTimer_Decrement `VEa  1 e 1 0 ]
+"221
+[v _DebounceCompleted_Decrement DebounceCompleted_Decrement `VEa  1 e 1 0 ]
+"222
+[v _pressDurationPowerSwitch pressDurationPowerSwitch `VEus  1 e 2 0 ]
+"223
+[v _shortPressDetectedPowerSwitch shortPressDetectedPowerSwitch `VEa  1 e 1 0 ]
+"224
+[v _UARTFlagDelay UARTFlagDelay `ui  1 e 2 0 ]
+"225
+[v _UARTFlag UARTFlag `a  1 e 1 0 ]
+"40 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/nvm/src/nvm.c
+[v _unlockKeyLow unlockKeyLow `VNEuc  1 s 1 unlockKeyLow ]
+"41
+[v _unlockKeyHigh unlockKeyHigh `VNEuc  1 s 1 unlockKeyHigh ]
+"43
+[v _NVM_Callback NVM_Callback `*.37(v  1 s 2 NVM_Callback ]
+"38 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/interrupt.c
+[v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
+"83 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/uart/src/eusart1.c
+[v _eusart1TxHead eusart1TxHead `VEuc  1 s 1 eusart1TxHead ]
+"84
+[v _eusart1TxTail eusart1TxTail `VEuc  1 s 1 eusart1TxTail ]
+"85
+[v _eusart1TxBuffer eusart1TxBuffer `VE[8]uc  1 s 8 eusart1TxBuffer ]
+"86
+[v _eusart1TxBufferRemaining eusart1TxBufferRemaining `VEuc  1 s 1 eusart1TxBufferRemaining ]
+"88
+[v _eusart1RxHead eusart1RxHead `VEuc  1 s 1 eusart1RxHead ]
+"89
+[v _eusart1RxTail eusart1RxTail `VEuc  1 s 1 eusart1RxTail ]
+"90
+[v _eusart1RxBuffer eusart1RxBuffer `VE[8]uc  1 s 8 eusart1RxBuffer ]
+[s S477 . 1 `uc 1 perr 1 0 :1:0 
+`uc 1 ferr 1 0 :1:1 
+`uc 1 oerr 1 0 :1:2 
+`uc 1 reserved 1 0 :5:3 
+]
+"91
+[u S482 . 2 `S477 1 . 1 0 `ui 1 status 2 0 ]
+[v _eusart1RxStatusBuffer eusart1RxStatusBuffer `VE[8]S482  1 s 16 eusart1RxStatusBuffer ]
+"92
+[v _eusart1RxCount eusart1RxCount `VEuc  1 s 1 eusart1RxCount ]
+"94
+[v _eusart1RxLastError eusart1RxLastError `VES482  1 s 2 eusart1RxLastError ]
+"100
+[v _EUSART1_TxInterruptHandler EUSART1_TxInterruptHandler `*.37(v  1 e 2 0 ]
+"101
+[v _EUSART1_TxCompleteInterruptHandler EUSART1_TxCompleteInterruptHandler `*.37(v  1 s 2 EUSART1_TxCompleteInterruptHandler ]
+"103
+[v _EUSART1_RxInterruptHandler EUSART1_RxInterruptHandler `*.37(v  1 e 2 0 ]
+"104
+[v _EUSART1_RxCompleteInterruptHandler EUSART1_RxCompleteInterruptHandler `*.37(v  1 s 2 EUSART1_RxCompleteInterruptHandler ]
+"106
+[v _EUSART1_FramingErrorHandler EUSART1_FramingErrorHandler `*.37(v  1 s 2 EUSART1_FramingErrorHandler ]
+"107
+[v _EUSART1_OverrunErrorHandler EUSART1_OverrunErrorHandler `*.37(v  1 s 2 EUSART1_OverrunErrorHandler ]
+"1375 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"1517
+} 0
+"253
+[v _setup_timer0 setup_timer0 `(v  1 e 1 0 ]
+{
+"268
+} 0
+"39 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/system.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"46
+} 0
+"38 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/pins.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"129
+} 0
+"45 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/nvm/src/nvm.c
+[v _NVM_Initialize NVM_Initialize `(v  1 e 1 0 ]
+{
+"52
+} 0
+"71
+[v _NVM_StatusClear NVM_StatusClear `(v  1 e 1 0 ]
+{
+"74
+} 0
+"40 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/interrupt.c
+[v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
+{
+"48
+} 0
+"103
+[v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
+"105
+} 0
+"120 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/uart/src/eusart1.c
+[v _EUSART1_Initialize EUSART1_Initialize `(v  1 e 1 0 ]
+{
+"154
+} 0
+"430
+[v _EUSART1_OverrunErrorCallbackRegister EUSART1_OverrunErrorCallbackRegister `(v  1 e 1 0 ]
+{
+[v EUSART1_OverrunErrorCallbackRegister@callbackHandler callbackHandler `*.37(v  1 p 2 0 ]
+"436
+} 0
+"422
+[v _EUSART1_FramingErrorCallbackRegister EUSART1_FramingErrorCallbackRegister `(v  1 e 1 0 ]
+{
+[v EUSART1_FramingErrorCallbackRegister@callbackHandler callbackHandler `*.37(v  1 p 2 0 ]
+"428
+} 0
+"39 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/system/src/clock.c
+[v _CLOCK_Initialize CLOCK_Initialize `(v  1 e 1 0 ]
+{
+"55
+} 0
+"269 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\main.c
+[v _ADC_Init ADC_Init `(v  1 e 1 0 ]
+{
+"284
+} 0
+"842
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"1106
+} 0
+"1108
+[v _updateMode updateMode `(v  1 e 1 0 ]
+{
+"1203
+} 0
+"1204
+[v _updateLEDs updateLEDs `(v  1 e 1 0 ]
+{
+"1293
+} 0
+"292
+[v _control_led_and_7segment_FOR_MODE_VOLTAGE control_led_and_7segment_FOR_MODE_VOLTAGE `(v  1 e 1 0 ]
+{
+"341
+} 0
+"807
+[v _control_led_and_7segment_FOR_MODE_STOP_CONTROLLER control_led_and_7segment_FOR_MODE_STOP_CONTROLLER `(v  1 e 1 0 ]
+{
+"839
+} 0
+"678
+[v _control_led_and_7segment_FOR_MODE_SPEED_CONTROL control_led_and_7segment_FOR_MODE_SPEED_CONTROL `(v  1 e 1 0 ]
+{
+"711
+} 0
+"713
+[v _control_led_and_7segment_FOR_MODE_SPEED_A_B control_led_and_7segment_FOR_MODE_SPEED_A_B `(v  1 e 1 0 ]
+{
+"766
+} 0
+"528
+[v _control_led_and_7segment_FOR_MODE_SOFT_START_DELAY control_led_and_7segment_FOR_MODE_SOFT_START_DELAY `(v  1 e 1 0 ]
+{
+"575
+} 0
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 11 ]
+[v ___awmod@counter counter `uc  1 a 1 10 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 4 ]
+[v ___awmod@dividend dividend `i  1 p 2 6 ]
+"34
+} 0
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 2 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 1 ]
+[v ___awdiv@counter counter `uc  1 a 1 0 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 6 ]
+[v ___awdiv@dividend dividend `i  1 p 2 8 ]
+"41
+} 0
+"619 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\main.c
+[v _control_led_and_7segment_FOR_MODE_SENSOR_II control_led_and_7segment_FOR_MODE_SENSOR_II `(v  1 e 1 0 ]
+{
+"657
+} 0
+"659
+[v _control_led_and_7segment_FOR_MODE_PHOTO_SENSOR control_led_and_7segment_FOR_MODE_PHOTO_SENSOR `(v  1 e 1 0 ]
+{
+"676
+} 0
+"429
+[v _control_led_and_7segment_FOR_MODE_ON_DELAY control_led_and_7segment_FOR_MODE_ON_DELAY `(v  1 e 1 0 ]
+{
+"477
+} 0
+"478
+[v _control_led_and_7segment_FOR_MODE_OFF_DELAY control_led_and_7segment_FOR_MODE_OFF_DELAY `(v  1 e 1 0 ]
+{
+"526
+} 0
+"577
+[v _control_led_and_7segment_FOR_MODE_NPN_SENSOR_I control_led_and_7segment_FOR_MODE_NPN_SENSOR_I `(v  1 e 1 0 ]
+{
+"617
+} 0
+"343
+[v _control_led_and_7segment_FOR_MODE_FREQUENCY control_led_and_7segment_FOR_MODE_FREQUENCY `(v  1 e 1 0 ]
+{
+"427
+} 0
+"794
+[v _control_led_and_7segment_FOR_MODE_CURRENT_OUTPUT control_led_and_7segment_FOR_MODE_CURRENT_OUTPUT `(v  1 e 1 0 ]
+{
+"805
+} 0
+"768
+[v _control_led_and_7segment_FOR_MODE_CONTROL_OUTPUT control_led_and_7segment_FOR_MODE_CONTROL_OUTPUT `(v  1 e 1 0 ]
+{
+"792
+} 0
+"9 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[u S2089 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
+"13
+[s S2092 _IO_FILE 11 `S2089 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v sprintf@f f `S2092  1 a 11 30 ]
+"12
+[v sprintf@ap ap `[1]*.4v  1 a 1 29 ]
+"9
+[v sprintf@s s `*.39uc  1 p 2 23 ]
+[v sprintf@fmt fmt `*.25DCuc  1 p 2 25 ]
+"23
+} 0
+"1817 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\doprnt.c
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+{
+"1820
+[v vfprintf@cfmt cfmt `*.25uc  1 a 2 21 ]
+[s S2124 _IO_FILE 0 ]
+"1817
+[v vfprintf@fp fp `*.39S2124  1 p 2 15 ]
+[v vfprintf@fmt fmt `*.25DCuc  1 p 2 17 ]
+[v vfprintf@ap ap `*.4*.4v  1 p 1 19 ]
+"1840
+} 0
+"1177
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+{
+[u S2137 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
+"1188
+[v vfpfcnvrt@convarg convarg `S2137  1 a 4 10 ]
+"1179
+[v vfpfcnvrt@cp cp `*.25uc  1 a 2 8 ]
+[v vfpfcnvrt@c c `uc  1 a 1 14 ]
+[s S2124 _IO_FILE 0 ]
+"1177
+[v vfpfcnvrt@fp fp `*.39S2124  1 p 2 0 ]
+[v vfpfcnvrt@fmt fmt `*.4*.25uc  1 p 1 2 ]
+[v vfpfcnvrt@ap ap `*.4*.4v  1 p 1 3 ]
+"1814
+} 0
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 3 ]
+[u S2089 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
+[s S2092 _IO_FILE 11 `S2089 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.39S2092  1 p 2 5 ]
+"24
+} 0
+"401 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/uart/src/eusart1.c
+[v _putch putch `(v  1 e 1 0 ]
+{
+[v putch@txData txData `uc  1 p 1 wreg ]
+[v putch@txData txData `uc  1 p 1 wreg ]
+[v putch@txData txData `uc  1 p 1 2 ]
+"408
+} 0
+"261
+[v _EUSART1_IsTxReady EUSART1_IsTxReady `(a  1 e 1 0 ]
+{
+"264
+} 0
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 11 ]
+"5
+[v ___lwmod@divisor divisor `ui  1 p 2 7 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 9 ]
+"25
+} 0
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 4 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 6 ]
+"5
+[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
+"30
+} 0
+"1297 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\main.c
+[v _UART_Write_Text UART_Write_Text `(v  1 e 1 0 ]
+{
+[v UART_Write_Text@text text `*.39uc  1 p 2 2 ]
+"1302
+} 0
+"345 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/uart/src/eusart1.c
+[v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]
+{
+"347
+[v EUSART1_Write@tempTxHead tempTxHead `uc  1 a 1 1 ]
+"345
+[v EUSART1_Write@txData txData `uc  1 p 1 0 ]
+"367
+} 0
+"15 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"287 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/nvm/src/nvm.c
+[v _NVM_ISR NVM_ISR `(v  1 e 1 0 ]
+{
+"296
+} 0
+"369 C:\Users\Admin\Desktop\01_Frequency_Project\10_DISPLAY_DELAY_17_06_2025.X\mcc_generated_files/uart/src/eusart1.c
+[v _EUSART1_TransmitISR EUSART1_TransmitISR `(v  1 e 1 0 ]
+{
+"371
+[v EUSART1_TransmitISR@tempTxTail tempTxTail `uc  1 a 1 0 ]
+"390
+} 0
+"300
+[v _EUSART1_ReceiveISR EUSART1_ReceiveISR `(v  1 e 1 0 ]
+{
+"303
+[v EUSART1_ReceiveISR@tempRxHead tempRxHead `uc  1 a 1 1 ]
+"302
+[v EUSART1_ReceiveISR@regValue regValue `uc  1 a 1 0 ]
+"343
+} 0
+"415
+[v _EUSART1_DefaultOverrunErrorCallback EUSART1_DefaultOverrunErrorCallback `(v  1 s 1 EUSART1_DefaultOverrunErrorCallback ]
+{
+"420
+} 0
+"410
+[v _EUSART1_DefaultFramingErrorCallback EUSART1_DefaultFramingErrorCallback `(v  1 s 1 EUSART1_DefaultFramingErrorCallback ]
+{
+"413
+} 0
