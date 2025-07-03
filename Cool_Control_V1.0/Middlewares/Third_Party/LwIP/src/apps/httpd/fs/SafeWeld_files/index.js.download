@@ -1,0 +1,350 @@
+document.addEventListener("DOMContentLoaded", function () {
+  var flowButton = document.getElementById("flow");
+  var tempButton = document.getElementById("temp");
+  var valveButton = document.getElementById("valve");
+  var detectionButton = document.getElementById("detection");
+  var statusMessage = document.getElementById("status-message");
+  // var Setup1_btn =document.getElementById("Setup_btn")
+
+
+// Below code is for the valve1 button go to index.shtml
+var valve1value= document.getElementById("Valve1").value
+console.log(valve1value)
+
+
+
+ setTimeout(function () {
+            if(valve1value=="1"){
+  window.location.href = "http://172.24.1.1/";  // Navigate to local SSI page
+    console.log("Volve 1 Done")
+}
+else{
+  window.location.href = "http://172.24.1.1/";
+} 
+        }, 2000);
+//function valve1data(valve1value){
+
+//}
+//valve1data(valve1value)
+
+
+
+
+//if(valve1value=="1"){
+ // window.location.href = "index.shtml";  // Navigate to local SSI page
+  //  console.log("Volve 1 Done")
+//}
+ // document.getElementById("Valve1").onclick = function () {
+   // window.location.href = "index.shtml";  // Navigate to local SSI page
+  //  console.log("Volve 1 Done")
+  //};
+
+let FlowValue =0
+  flowButton.addEventListener('click', () => {
+    FlowValue++;
+  
+      toggleState1(flowButton,FlowValue)
+    
+    console.log(FlowValue)
+    
+});
+function toggleState1(div, Fvalue){
+  if(Fvalue==0){
+    div.innerHTML = "FLOW<br>OK";
+    // div.classList.add("state-1");
+    div.style.backgroundColor="green"
+      // div.classList.remove("state-2");
+      // div.classList.remove("state-3");
+  }
+  if(Fvalue==1){
+    div.innerHTML = "FLOW<br>NOT OK";
+     div.style.backgroundColor="red"
+    // div.classList.add("state-2");
+      // div.classList.remove("state-1");
+      // div.classList.remove("state-3");
+  }
+  if(Fvalue==2){
+    
+    div.innerHTML = "FLOW<br>Warning";
+     div.style.backgroundColor="yellow"
+    // div.classList.add("state-3");
+      // div.classList.remove("state-2");
+      // div.classList.remove("state-1");
+  }
+  if(Fvalue==3){
+    FlowValue=0
+    div.style.backgroundColor="green"
+    // div.innerHTML.remove("FLOW<br>Warning");
+    div.innerHTML = "FLOW<br>OK";
+    // div.innerHTML.remove("FLOW<br>NOT OK");
+
+    // div.classList.add("state-1");
+      // div.classList.remove("state-2");
+      // div.classList.remove("state-3");
+  }
+  
+}
+
+//
+//let TempValue =0
+//tempButton.addEventListener('click', () => {
+ //   TempValue++;
+  //      toggleState2(tempButton,TempValue)
+  //      console.log(TempValue)
+    
+//});
+function toggleState2(div1, Tvalue){
+  if(Tvalue==0){
+    div1.innerHTML = "TEMP<br>OK";
+    div1.style.backgroundColor="green"
+  }
+  if(Tvalue==1){
+    div1.innerHTML = "TEMP<br>NOT OK";
+     div1.style.backgroundColor="red"
+  }
+  if(Tvalue==2){
+    
+    div1.innerHTML = "TEMP<br>Warning";
+     div1.style.backgroundColor="yellow"
+  }
+  if(Tvalue==3){
+    TempValue=0
+    // location.reload()
+    // FlowValue=0
+    div1.style.backgroundColor="green"
+    div1.innerHTML = "TEMP<br>OK";
+
+  }
+  
+}
+
+let ValveValue =0
+//valveButton.addEventListener('click', () => {
+ // ValveValue++;
+  //      toggleState3(valveButton,ValveValue)
+   //     console.log(ValveValue)
+    
+//});
+function toggleState3(div1, Vvalue){
+  if(Vvalue==0){
+    div1.innerHTML = "VALVE<br>ON";
+    div1.style.backgroundColor="green"
+  }
+  if(Vvalue==1){
+    div1.innerHTML = "VALVE<br>Off";
+     div1.style.backgroundColor="red"
+  }
+    if(Vvalue==2){
+    ValveValue=0
+    // location.reload()
+    // FlowValue=0
+    div1.style.backgroundColor="green"
+    div1.innerHTML = "VALVE<br>ON";
+
+  }
+  
+}
+
+//
+
+  // flowButton.addEventListener("click",  () =>{
+    // let array=0
+    // for (let index = 0; index <3; index++) {
+      // array=array++
+      // toggleState1(flowButton,array);
+    // updateStatusMessage();
+    // }
+    // toggleState(flowButton, "FLOW<br>OK", "FLOW<br>NOT OK","FLOW<br>Eroor");
+    // updateStatusMessage();
+  // });
+  // function toggleState1(div, state1) {
+    // console.log(state1)
+    // if (div.innerHTML === state1) {
+      // div.innerHTML = state1;
+      // div.classList.add("state-1");
+      // div.classList.remove("state-2");
+      // div.classList.remove("state-3");
+      
+    // }
+    // if (div.innerHTML === state2) {
+    //   div.innerHTML = state2;
+    //   div.classList.add("state-2");
+    //   div.classList.remove("state-1");
+    //   div.classList.remove("state-3");
+      
+    // }
+    // else {
+    //   div.innerHTML = state3;
+    //   div.classList.add("state-3");
+    //   div.classList.remove("state-2");
+    //   div.classList.remove("state-1");
+    // }
+  // }
+
+  // tempButton.addEventListener("click", function () {
+  //   toggleState(tempButton, "TEMP.<br>OK", "TEMP.<br>NOT OK","Temp<br>Eroor");
+  //   updateStatusMessage();
+  // });
+
+  // valveButton.addEventListener("click", function () {
+  //   toggleState(valveButton, "VALVE<br>ON", "VALVE<br>OFF","FLOW<br>Eroor");
+  //   updateStatusMessage();
+  // });
+
+  //detectionButton.addEventListener("click", function () {
+  //  toggleState(
+  //    detectionButton,
+    //  "DETECTION<br>ENABLED",
+   //   "DETECTION<br>DISABLED"
+  //  );
+   // updateStatusMessage();
+ // });
+
+
+
+
+
+  // Valve1 Open Close Function and chenges on page
+
+//var Valve1 = document.getElementById("Valve1");
+var val_1 = document.getElementById("val_1");
+ 
+//Valve1.onclick = function() {
+  //  console.log("value1_Setd Value");
+ //  toggle_for_ON_OFF(Valve1, val_1, "OPEN", "CLOSE");
+//}
+
+//function toggle_for_ON_OFF(dav, div, sta1, sta2) {
+ // console.log(sta1,sta2)
+//if (div.innerHTML === sta1) {
+ // div.innerHTML = sta2;
+ // div.style.color="white"
+//  dav.style.backgroundColor = "blue";
+ //      
+ // } else {
+ //   div.innerHTML = sta1;
+ //   dav.style.backgroundColor = "red";
+  //  div.style.color="black"
+//}
+//}
+
+
+// Valve2 Open Close Function and chenges on page
+
+////var Valve2 = document.getElementById("Valve2");
+var val_2 = document.getElementById("val_2");
+
+
+//Valve2.onclick = function() {
+// console.log("Valve2_Setd Value");
+//toggle_for_ON_OFF(Valve2, val_2, "OPEN", "CLOSE");
+//}
+
+//function toggle_for_ON_OFF(dav, div, sta1, sta2) {
+//  console.log(sta1,sta2)
+//if (div.innerHTML === sta1) {
+ // div.innerHTML = sta2;
+ // div.style.color="white"
+ // dav.style.backgroundColor = "blue";
+       
+  //} else {
+  //  div.innerHTML = sta1;
+ //   dav.style.backgroundColor = "red";
+ //   div.style.color="black"
+//}
+//}
+
+
+// Bypass ON OFF Function and chenges on page
+
+//var Bypass = document.getElementById("Bypass");
+//var val_3 = document.getElementById("val_3");
+
+ 
+//Bypass.onclick = function() {
+  // console.log("Bypass_Setd Value");
+  // toggle_for_ON_OFF(Bypass, val_3, "ON", "OFF");
+//}
+
+//function toggle_for_ON_OFF(dav, div, sta1, sta2) {
+ // console.log(sta1,sta2)
+//if (div.innerHTML === sta1) {
+ // div.innerHTML = sta2;
+ // div.style.color="white"
+ // dav.style.backgroundColor = "blue";
+       
+ // } else {
+  //  div.innerHTML = sta1;
+ //   dav.style.backgroundColor = "red";
+ //   div.style.color="black"
+//}
+//}
+
+
+  
+
+  
+
+
+
+
+
+  function toggleState(div, state1, state2,state3) {
+    if (div.innerHTML === state1) {
+      div.innerHTML = state1;
+      div.classList.add("state-1");
+      div.classList.remove("state-2");
+      div.classList.remove("state-3");
+      
+    }
+    if (div.innerHTML === state2) {
+      div.innerHTML = state2;
+      div.classList.add("state-2");
+      div.classList.remove("state-1");
+      div.classList.remove("state-3");
+      
+    }
+    else {
+      div.innerHTML = state3;
+      div.classList.add("state-3");
+      div.classList.remove("state-2");
+      div.classList.remove("state-1");
+    }
+  }
+  console.log(flowButton.innerHTML)
+ updateStatusMessage();
+  function updateStatusMessage() {
+    if (
+      flowButton.innerHTML === "FLOW<br>NOT OK" ||
+      tempButton.innerHTML === "TEMP.<br>NOT OK" ||
+      valveButton.innerHTML === "VALVE<br>OFF" ||
+      detectionButton.innerHTML === "DETECTION<br>DISABLED"
+    ) {
+      statusMessage.textContent = "NOT SAFE TO WELD";
+    } else {
+      statusMessage.textContent = "OK TO WELD";
+    }
+  }
+});
+
+
+
+// IN java script working well im 
+
+//  SetUp Button Working function
+
+var button = document.getElementById('Setup_btn');
+
+// Attach the navigateToNextPage function to the button's onclick event
+button.onclick = Setup1_btn;
+
+function Setup1_btn() {
+  // console.log("SetUP")
+  window.location.href = 'setup.shtml'; // Replace 'nextpage.html' with your target URL
+}
+
+
+const refresh = document.getElementsByClassName("side-container");
+setInterval(function() {refresh.innerHTML}, 1000);
+
+

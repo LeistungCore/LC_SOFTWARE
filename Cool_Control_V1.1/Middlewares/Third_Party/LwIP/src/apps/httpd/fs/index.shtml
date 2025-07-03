@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://sprightly-mochi-7511dc.netlify.app/ -->
+  <meta http-equiv="refresh" content="2">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- <meta http-equiv="refresh" content="1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolcontrol-2</title>
+    <link rel="stylesheet" href="./SafeWeld_files/index.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-container">
+        <div id="logo">
+        <div class="logo_3">
+          <h1>Cool Control-2</h1>
+        </div>
+        <div id="child_logo">
+          <div class="logo_2"><h3 id="h3_log1">BECKER</h3>  <h3>Robotic</h3></div>
+          <div id="vrtLine"></div>
+          <div id="logo_4"><h3 class="h3_log">Sai</h3> <h3>Control</h3></div>
+        </div>
+        </div>
+        <!-- <br/> BECKER <br/>  -->
+         
+          <div id="Valvebtn" >
+            <form method="get" action="/leds.cgi"> 
+              
+
+	  <table style="width:100%">
+	  <tr>
+	  	   
+<!--<input value="1" name="led" type="checkbox" class="largerCheckbox" >-->
+         
+
+		
+            <td><!--#B1--> </span></button></td>
+            <td><!--#B2--></span></button></td>
+            <!--  <input type="button" value="aaaa" name="kkk" onclick="location.href='index.shtml'" />  -->
+            <td><!--#BYPVALVE--></span></button></td>
+            <!-- <td><button id="Bypass"  type="submit" >BYPASS  <br><span id="val_3">OFF</span></button></td> -->
+  </tr>
+              </table>
+                   </form>
+              <button id="Setup_btn">SETUP</button>
+
+             
+
+
+           </div>
+          </div>
+          <div class="second-container">
+            <div class="side-container">
+              <!--#T1-->
+            </div>
+              <!--#T2-->
+            </div>
+              <!--#T3-->
+            </div>
+              <!--#T4-->
+            </div>
+            
+           
+             </div>
+
+             <div class="mid-container">
+              <div class="top-variable-indicator">
+                <h1><!--#FLOW--> <span>LPM</span></h1>
+                 
+                <h1><!--#TEMP--><span>°C</span></h1>
+                 
+              </div>
+              <div class="mid-text-indicator">
+                <h1 id="status-message"><!--#MSG--></h1>
+                <p>Flow conditions are within the established limits for welding.</p>
+                <ul class="custom-list">
+                  <li>Select <strong>VALVE</strong> to turn coolant flow OFF</li>
+                  <li>Select <strong>BYPASS</strong> to disable leak detection</li>
+                  <li>
+                    Select <strong>SETUP</strong> to change operational settings
+                  </li>
+                </ul>
+              </div>
+              <div class="bottom-variable-indicator">
+                <div>
+                  <h2>Settings</h2>
+                  <table class="settings-table">
+                    <tbody><tr>
+                      <td>Flow warning</td>
+                      <td ><!--#FWARN--> <span> LPM</td>
+                    </tr>
+                    <tr>
+                      <td>Flow fault</td>
+                      <td ><!--#FFAULT--><span> LPM</td>
+                    </tr>
+                    <tr>
+                      <td>Primary Detection</td>
+                      <td>Normal</td>
+                    </tr>
+                  </tbody></table>
+                </div>
+                <div>
+                  <h2>Measurements</h2>
+                  <table class="measurements-table">
+                    <tbody><tr>
+      
+                      <th></th>
+                      <th>Flow</th>
+                      <th>Temp.</th>
+                    </tr>
+                    <tr>
+                      <td>Inlet</td>
+                      <td><!--#FLOW1--> <span>LPM</td>
+                      <td><!--#TEMP1--> <span>°C</td>
+                    </tr>
+                    <tr>
+                      <td>Outlet</td>
+                      <td><!--#FLOW2--> <span>LPM</td>
+                      <td><!--#TEMP2--> <span>°C</td>
+                    </tr>
+                  </tbody></table>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          
+          
+    </div>
+  
+
+<script src="./SafeWeld_files/index.js.download"></script>
+</body></html>

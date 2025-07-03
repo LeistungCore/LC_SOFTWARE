@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://sprightly-mochi-7511dc.netlify.app/setup.html -->
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SetUp</title>
+    <link rel="stylesheet" href="./SetUp_files/setup.css">
+</head>
+<body>
+    <!-- <h1>VINAYAK</h1> -->
+
+
+    
+    <!-- ---------------------------- Container Div ---------------------------- -->
+    <div class="container">
+
+            <!-- ------------- Div for 3 Buttons Settings Flow,Temp, Setup ------------- -->
+         
+            <div id="Top_3btn">
+            <button class="Top_btn" id="flowBtn">Flow Settings</button>
+            <button class="Top_btn" id="Temperature_Btn">Temperature Settings</button>
+            <button class="Top_btn" id="Setup_Btn">Setup IP</button>
+            </div>
+
+            <!-- --------------------- On Click Flow Settings Div ---------------------- -->
+            <form method="post" action="/form.cgi">
+            <div id="flowModal" class="flowmodal_1" style="display: none;">
+
+                <!-- ----------------------- Content Aline In Table ------------------------ -->
+
+                <table>
+                    <tbody><tr>
+                        <td> <label for="lname">Flow Warning</label></td>
+                        <td><input type="number" id="flowarning" value="" class="form-control ml-5"></td>
+                        <td><label id="Unit_flow1" for="lname">GPM</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Flow Fault</label></td>
+                        <td><input type="number" id="Flowfault" class="form-control ml-5"value=""></td>
+                        <td><label id="Unit_flow2" for="lname">GPM</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Slow Leak Difference</label></td>
+                        <td><input type="number" id="Slowleak" class="form-control ml-5"value=""></td>
+                        <td><label id="Unit_flow3" for="lname">GPM</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Slow Leak Delay</label></td>
+                        <td><input type="number" id="Slowdelay" class="form-control ml-5"value=""></td>
+                        <td><label for="lname">ms</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname"value="">Stabilization Delay</label></td>
+                        <td><select name="#" id="Stabildelay">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select></td>
+                        <td><label for="lname">s</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Leak Response</label></td>
+                        <td><select name="#" id="leakResponse"value="">
+                              <option value="Normal">Normal</option>
+                              <option value="Open">Open</option>
+                              <option value="Presize">Presize</option>
+                            </select></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Unit</label></td>
+                        <td><select onchange="flowUnit_fun()" name="#" id="flowUnit"value="">
+                            <option value="GPM">GPM</option>
+                            <option value="LPM">LPM</option>
+                          </select></td>
+                        <td></td>
+                    </tr>
+                </tbody></table>
+
+            </form>
+
+                <!-- ------------------------- Submit Buttons Div -------------------------- -->
+
+                <div id="btn_div">
+                    <button class="Div_btn">Show/Hide Factory Settings</button>
+                   <!-- <input type="submit" value="Submit"  class="Div_btn"></input>   -->
+                   <button class="Div_btn" id="FlowSubmit">Submit</button>             
+                   <button class="Div_btn">Cancel</button>
+                </div>
+
+            </div>
+
+            <!-- ------------------ On Click Temperature Settings Div ------------------ -->
+            
+            <div id="Temperature_Modal" class="flowmodal_1" style="display: block;">
+
+                <!-- ----------------------- Content Aline In Table ------------------------ -->
+                <form method="post" action="/Temp.cgi">
+                <table>
+                    <tbody><tr>
+                        <th></th>
+                        <th>Warning</th>
+                        <th> Fault</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Outlet Temperature</label></td>
+                        <td><input type="number" id="Tempoutlatewarning" class="form-control ml-5" value=""></td>
+                        <td><input type="number" id="TempoutlateFault" class="form-control ml-5" value=""></td>
+                        <td><label id="Unit_Temp1" for="lname">℃</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Differential Temperature</label></td>
+                        <td><input type="number" id="TempDiffWarning" class="form-control ml-5" value=""></td>
+                        <td><input type="number" id="TempDiffFault" class="form-control ml-5" value=""></td>
+                        <td><label id="Unit_Temp2" for="lname">℃</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Thermal Load</label></td>
+                        <td><input type="number" id="TempThermalWarning" class="form-control ml-5" value=""></td>
+                        <td><input type="number" id="TempThermalFault" class="form-control ml-5" value=""></td>
+                        <td><label for="lname">KW</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Coolant Density</label></td>
+                        <td><input type="number" id="TempCoolantwarning" class="form-control ml-5" value=""></td>
+                        <td></td>
+                        <td><label for="lname">kg/m³</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Coolant Heat Capacity</label></td>
+                        <td><input type="number" id="TempHeatwarning" class="form-control ml-5" value=""></td>
+                        <td></td>
+                        <td><label id="Unit_Temp4" for="lname">J/kg.℃</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Heat Load Threshold </label></td>
+                        <td><input type="number" id="TempLoadwarning" class="form-control ml-5" value=""></td>
+                        <td></td>
+                        <td><label id="Unit_Temp3" for="lname">℃</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Unit</label></td>
+                        <td><select id="TempUnit" onchange="TempUnit_fun()" name="#" value="">
+                            <option name="Celsius" value="℃">℃</option>
+                            <option name="Fahrenheit" value="℉">℉</option>
+                          </select></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody></table>
+</form>
+                <!-- ------------------------- Submit Buttons Div -------------------------- -->
+
+                <div id="btn_div">
+                    <button class="Div_btn">Show/Hide Factory Settings</button>
+                   <button class="Div_btn" id="TempSubmit">Submit</button>         
+                   <button class="Div_btn">Cancel</button>
+                </div>
+            </div>
+
+            <!-- ------------------------ On Click Setup IP Div ------------------------ -->
+            
+            <div id="Setup_Modal" class="flowmodal_1" style="display: none;">
+
+                <!-- ----------------------- Content Aline In Table ------------------------ -->
+                <form method="post" action="/ip.cgi">
+                <table>
+                    <tbody><tr>
+                        <td><h1>Warnings!</h1></td>
+                        <td>
+                            <p>The selection of I/P address is only for initial commissioning of the Safe-Weld, and must not be changed during normal operation, which would result in a network failure.
+                            <br>The I/P Address selection can only be made with a single Safe-Weld interfaced to the pendant.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="IP" type="radio">
+                            <br>
+                            <label>172.24.1.1</label>
+                        </td>
+                        <td>
+                            <p>This is the normal I/P address for a single Safe-Weld on a robot controller, or for the first of two Safe-Welds in Dual-gun applications.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="IP" type="radio">
+                            <br>
+                            <label>172.24.1.2</label>
+                        </td>
+                        <td>
+                            <p>Select this I/P address for the second Safe-Weld in Dual-gun applications.</p>
+                        </td>
+                    </tr>
+                  
+                </tbody></table>
+</form>
+                <!-- ------------------------- Submit Buttons Div -------------------------- -->
+
+                <div id="btn_div">
+                   <button class="Div_btn">Submit &amp; Reset</button>         
+                   <button class="Div_btn">Cancel</button>
+                </div>
+
+            </div>
+        
+
+    </div>
+
+
+
+<script src="./SetUp_files/setup.js.download">
+</script></body></html>

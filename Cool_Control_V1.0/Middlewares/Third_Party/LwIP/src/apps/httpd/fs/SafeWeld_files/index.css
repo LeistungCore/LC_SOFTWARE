@@ -1,0 +1,570 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.container {
+  width: 100%;
+  /* height: 100vh; */
+  /* display: grid; */
+  /* grid-template-areas:
+    "a a a a a"
+    "b b c c c";
+  gap: 0.20rem; */
+}
+.header-container {
+  height: 140px;
+  /* grid-area:a ; */
+  width: 100%;
+  background-color: #345c88;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 1rem; */
+  
+  /* gap: 10px; */
+}
+#logo{
+  color: #ffffff;
+  width: 30%;
+  font-weight: bold;
+  font-family: 'Times New Roman', serif;
+  /* border: 2px solid blue; */
+
+  /* font-size: 2rem; */
+  margin-left: 45px;
+  /* padding-bottom: -20px; */
+}
+.logo_3{
+  /* border: 1px solid blue; */
+  margin: auto;
+  width: 75%;
+  font-weight: bold;
+  /* align-items: center; */
+  /* justify-items: center; */
+}
+#child_logo{
+  width: 60%;
+  margin: auto;
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: space-around;
+}
+.logo_3 h1{
+  margin: auto;
+
+/* background-color: black; */
+/* margin-bottom: -10px; */
+font-size: 60px;
+}
+.logo_2{
+  display:grid;
+  /* justify-content: space-around; */
+  width: 40%;
+  height: 50%;
+  margin: auto;
+  /* background-color: black; */
+  /* margin-bottom: -20px; */
+  /* border: 1px solid blue; */
+}
+.logo_2 h3{
+  margin: auto;
+  font-size: 130%;
+  /* color: #e3ecca; */
+}
+#logo_4{
+  display: grid;
+  width: 40%;
+  /* height: 50%; */
+  margin: auto;
+  /* background-color: black; */
+  /* margin-bottom: -20px; */
+  /* border: 1px solid blue; */
+ }
+ #logo_4 h3{
+  margin: auto;
+  font-size: 130%;
+  /* color: #e3ecca; */
+ }
+ #h3_log1{
+  color: red;
+ }
+ #vrtLine{
+  border: 1px solid white;
+  width: 0px;
+  /* border-radius: 100px; */
+  margin: auto;
+  height: 40px;
+  
+ }
+ 
+
+/* .header-container div:nth-child(2) { */
+  /* width: 75%; */
+  /* margin-right: 5%; */
+  /* display: flex; */
+  /* justify-content: space-around; */
+/* } */
+#Valvebtn {
+  width: 75%;
+  /* margin-right: 5%; */
+  display: flex;
+  justify-content: space-around;
+}
+.header-container div:nth-child(2) > button {
+  width: 19%;
+  height: 4.5rem;
+  margin-top: 25px;
+  background-color: blue;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: 900;
+  border: 2px solid silver;
+  line-height: 0.8;
+  padding: 1rem;
+  margin-left: 3px;
+}
+#Valve1 {
+  width: 100%;
+  /* height: 4.5rem; */
+  background-color: blue;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: 900;
+  border: 2px solid silver;
+  line-height: 0.8;
+  padding: 1rem;
+  /* margin-left: 3px; */
+}
+#Valve1 > span {
+  font-size: 1rem;
+  color: #87a9cc;
+}
+#Valve2 {
+  width: 100%;
+  /* height: 4.5rem; */
+  background-color: blue;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: 900;
+  border: 2px solid silver;
+  line-height: 0.8;
+  padding: 1rem;
+  /* margin-left: 3px; */
+}
+#Valve2 > span {
+  font-size: 1rem;
+  color: #87a9cc;
+}
+
+#Bypass {
+  width: 100%;
+  /* height: 4.5rem; */
+  background-color: blue;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: 900;
+  border: 2px solid silver;
+  line-height: 0.8;
+  padding: 1rem;
+  /* margin-left: 3px; */
+}
+#Bypass > span {
+  font-size: 1rem;
+  color: #87a9cc;
+}
+
+
+.header-container div:nth-child(2) > button > span {
+  font-size: 1rem;
+  color: #87a9cc;
+}
+
+.second-container {
+  display: flex;
+  width: 100%;
+  gap: 3px;
+  height: 800px;
+  margin-top: 1px;
+}
+
+.side-container {
+  width: 25%;
+  background-color: #345c88;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 3rem;
+}
+.state-indicator {
+  height: 4.5rem;
+  background-color: green;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 3rem;
+  font-weight: 900;
+  border: 2px solid white;
+  padding: 1rem 1rem 2rem 1rem;
+  line-height: 1;
+  text-align: center;
+ 
+}
+.state-1 {
+  background-color: green;
+}
+
+.state-2 {
+  background-color: red;
+}
+.state-3 {
+  background-color: yellow;
+}
+
+/* Valve Button baground color chenging */
+/* .sta-2{
+  background-color: Green;
+}
+.sta-1{
+  background-color: red;
+} */
+
+.mid-container {
+  /* grid-area: c; */
+  width: 75%;
+  background-color: rgb(188, 214, 224);
+  position: relative;
+}
+.top-variable-indicator {
+  width: 100%;
+  border: 1rem solid rgb(46, 45, 45);
+  box-shadow: inset 0 0 0 1px rgb(255, 255, 255);
+  background-color: black;
+  color: rgb(100, 214, 100);
+  display: flex;
+  justify-content: space-around;
+  font-size: 3rem;
+  line-height: 0;
+}
+.top-variable-indicator > h1 > span {
+  font-size: 2.5rem;
+  /* margin-left: 1rem; */
+}
+.mid-text-indicator {
+  /* width: 100%; */
+  padding: 0 10rem;
+  
+  text-align: center;
+
+}
+.mid-text-indicator > h1 {
+  font-weight: 550;
+  font-size: 2.75rem;
+}
+.mid-text-indicator > p {
+  font-weight: 500;
+  font-size: 2rem;
+  text-align: left;
+}
+.custom-list {
+  margin-left: 2.5rem;
+  text-align: left;
+  list-style-type: none;
+  padding-left: 0;
+}
+.custom-list li::before {
+  content: ">> ";
+  color: blue;
+}
+.bottom-variable-indicator {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  background-color: #345c88;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  color: #ffffff;
+}
+
+table {
+  margin-bottom: 1.5rem;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.settings-table td:first-child {
+  text-align: left;
+}
+
+.settings-table td:last-child {
+  text-align: right;
+}
+
+.measurements-table td:first-child {
+  text-align: right;
+}
+
+
+@media (max-width: 1374px){
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+  
+  .container {
+    width: 100%;
+    /* height: 100vh; */
+    /* display: grid; */
+    /* grid-template-areas:
+      "a a a a a"
+      "b b c c c";
+    gap: 0.20rem; */
+  }
+  .header-container {
+    /* height: 300px; */
+    /* grid-area:a ; */
+    width: 100%;
+    background-color: #345c88;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    
+    /* gap: 10px; */
+  }
+  #logo{
+    color: #ffffff;
+    width: 25%;
+    font-weight: bold;
+    /* border: 2px solid blue; */
+  
+    /* font-size: 2rem; */
+    /* margin-left: 50px; */
+    /* padding-bottom: -20px; */
+  }
+  .logo_3{
+    /* border: 1px solid blue; */
+    margin: auto;
+    width: 90%;
+    /* align-items: center; */
+    /* justify-items: center; */
+  }
+  #child_logo{
+    width: 81%;
+    margin: auto;
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-around;
+  }
+  .logo_3 h1{
+    margin: auto;
+  
+  /* background-color: black; */
+  /* margin-bottom: -10px; */
+  font-size: 60px;
+  }
+  .logo_2{
+    display:grid;
+    /* justify-content: space-around; */
+    width: 40%;
+    height: 50%;
+    margin: auto;
+    /* background-color: black; */
+    /* margin-bottom: -20px; */
+    /* border: 1px solid blue; */
+  }
+  .logo_2 h3{
+    margin: auto;
+    font-size: 130%;
+    /* color: #e3ecca; */
+  }
+  #logo_4{
+    display: grid;
+    width: 40%;
+    /* height: 50%; */
+    margin: auto;
+    /* background-color: black; */
+    /* margin-bottom: -20px; */
+    /* border: 1px solid blue; */
+   }
+   #logo_4 h3{
+    margin: auto;
+    font-size: 130%;
+    /* color: #e3ecca; */
+   }
+   #h3_log1{
+    color: red;
+   }
+   #vrtLine{
+    border: 1px solid white;
+    width: 0px;
+    /* border-radius: 100px; */
+    margin: auto;
+    height: 40px;
+    
+   }
+  .header-container div:nth-child(2) {
+    width: 75%;
+    /* margin-right: 5%; */
+    display: flex;
+    justify-content: space-around;
+  }
+  .header-container div:nth-child(2) > button {
+    width: 16%;
+    /* height: 4.5rem; */
+    background-color: blue;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid silver;
+    line-height: 1;
+    padding: 1rem;
+    /* margin-left: 3px; */
+  }
+  .header-container div:nth-child(2) > button > span {
+    font-size: 0.6rem;
+    color: #87a9cc;
+  }
+  
+  .second-container {
+    display: flex;
+    /* height: 590px; */
+    width: 100%;
+    gap: 3px;
+    /* height: 840px; */
+    margin-top: 1px;
+  }
+  
+  .side-container {
+    width: 25%;
+    height: auto;
+    background-color: #345c88;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 4rem;
+  }
+  .state-indicator {
+    height: 4.5rem;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    border: 2px solid white;
+    padding: 1rem 1rem 0rem 1rem;
+    line-height: 1.2;
+    text-align: center;
+    /* margin-top: -100px; */
+   
+  }
+  .state-1 {
+    background-color: green;
+  }
+  
+  .state-2 {
+    background-color: red;
+  }
+  
+  .mid-container {
+    /* grid-area: c; */
+    position: relative;
+    width:75%;
+    background-color: rgb(188, 214, 224);
+  }
+  .top-variable-indicator {
+    width: 95%;
+    border: 1rem solid rgb(46, 45, 45);
+    box-shadow: inset 0 0 0 1px rgb(255, 255, 255);
+    background-color: black;
+    color: rgb(100, 214, 100);
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.5rem;
+    line-height: 0;
+  }
+  .top-variable-indicator > h1 > span {
+    font-size: 2rem;
+    /* margin-left: 1rem; */
+  }
+  .mid-text-indicator {
+    /* width: 100%; */
+    height: auto;
+    margin-left: 30px;
+    padding: 0 1rem;
+    text-align: center;
+  
+  }
+  .mid-text-indicator > h1 {
+    font-weight: 550;
+    font-size: 2.2rem;
+  }
+  .mid-text-indicator > p {
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  .custom-list {
+    margin-left: 2rem;
+    text-align: left;
+    list-style-type: none;
+    padding-left: 1;
+  }
+  .custom-list li::before {
+    content: ">> ";
+    color: blue;
+  }
+  .bottom-variable-indicator {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    background-color: #345c88;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  table {
+    margin-bottom: 1.5rem;
+  }
+  
+  th,
+  td {    
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  .settings-table td:first-child {
+    text-align: left;
+  }
+  
+  .settings-table td:last-child {
+    text-align: right;
+  }
+  
+  .measurements-table td:first-child {
+    text-align: right;
+  }
+  
+}
+
+
+#val_1{
+  background-color: none;
+  text-decoration: none;
+}

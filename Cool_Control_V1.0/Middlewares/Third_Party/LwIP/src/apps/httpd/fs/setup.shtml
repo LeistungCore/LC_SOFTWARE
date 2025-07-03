@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://sprightly-mochi-7511dc.netlify.app/setup.html -->
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SetUp</title>
+    <link rel="stylesheet" href="./SetUp_files/setup.css">
+</head>
+<body>
+    <!-- <h1>VINAYAK</h1> -->
+
+
+    
+    <!-- ---------------------------- Container Div ---------------------------- -->
+    <div class="container">
+
+            <!-- ------------- Div for 3 Buttons Settings Flow,Temp, Setup ------------- -->
+         
+            <div id="Top_3btn">
+            <button class="Top_btn" id="flowBtn">Flow Settings</button>
+            <button class="Top_btn" id="Temperature_Btn">Temperature Settings</button>
+            <button class="Top_btn" id="Setup_Btn">Setup IP</button>
+            </div>
+
+            <!-- --------------------- On Click Flow Settings Div ---------------------- -->
+            <form action="/setup.cgi" method="get" id="form">
+                <div>
+            <div id="flowModal" class="flowmodal_1"  style="display: block;" >
+
+                <!-- ----------------------- Content Aline In Table ------------------------ -->
+
+                <table>
+                    <tbody><tr>
+                        <td> <label for="lname">Flow Warning</label></td>
+                        <td><input type="number" id="flowarning" name="flowarning1" value="<!--#FWARN-->" class="form-control ml-5"></td>
+                        <td><label id="Unit_flow1" for="lname">LPM</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Flow Fault</label></td>
+                        <td><input type="number" id="Flowfault"  name="Flowfault1" class="form-control ml-5"value="<!--#FFAULT-->"></td>
+                        <td><label id="Unit_flow2" for="lname">LPM</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Slow Leak Difference</label></td>
+                        <td><input  type="text" maxlength="3" id="Slowleak" name="Slowleak1" class="form-control ml-5"value="<!--#SLDIFF-->" ></td>
+                        <td><label id="Unit_flow3" for="lname">LPM</label></td>						
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Slow Leak Delay</label></td>
+                        <td><input type="number" id="Slowdelay" name="Slowdelay1" class="form-control ml-5"value="<!--#SLDELAY-->"></td>
+                        <td><label for="lname">S</label></td>
+                    </tr>
+                    <tr>
+         
+                          </select></td>
+                        <td></td>
+                    </tr>
+                </tbody></table>
+
+
+             <!-- ------------------</form>------------------ -->
+
+                <!-- ------------------------- Submit Buttons Div -------------------------- -->
+
+                <div id="btn_div">
+                    <!--  <button class="Div_btn">Show/Hide Factory Settings</button> ----- -->
+                  <!--  <button class="Div_btn" id="FlowSubmit">Submit</button>     - -->  
+                  <!-- <input type="submit" value="Submit" class="Div_btn" id="FlowSubmit">      --->
+                <!--   <button class="Div_btn">Cancel</button> -->
+                </div>
+            
+            </div>
+
+            <!-- ------------------ On Click Temperature Settings Div ------------------ -->
+            
+            <div id="Temperature_Modal" class="flowmodal_1"   style="display: none;">
+
+                <!-- ----------------------- Content Aline In Table ------------------------ -->
+               <!--  <form method="post" action="/Temp.cgi"> ---- -->
+                <table>
+                    <tbody><tr>
+                        <th></th>
+                        <th>Warning</th>
+                        <th> Fault</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Outlet Temperature</label></td>
+                        <td><input type="number" id="Tempoutlatewarning" name="Tempotlatewarning1" class="form-control ml-5" value="<!--#OutWar-->"></td>
+                        <td><input type="number" id="TempoutlateFault" name="TempoutlteFault1" class="form-control ml-5" value="<!--#OutFault-->"></td>
+                        <td><label id="Unit_Temp1" for="lname">℃</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Differential Temperature</label></td>
+                        <td><input type="number" id="TempDiffWarning" name="TempDifWarning1" class="form-control ml-5" value="<!--#DiffWar-->"></td>
+                        <td><input type="number" id="TempDiffFault" name="TempDifFault1" class="form-control ml-5" value="<!--#DFLT-->"></td>
+                        <td><label id="Unit_Temp2" for="lname">℃</label></td>
+                    </tr>
+
+                 
+                    <tr>
+
+                          </select></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody></table>
+  <!-- ------------------</form>------------------ -->
+
+                <!-- ------------------------- Submit Buttons Div -------------------------- -->
+
+                <div id="btn_div" >
+                    <!-- --- <button class="Div_btn">Show/Hide Factory Settings</button> ---- -->
+                   <!-- ---- <button class="Div_btn" id="TempSubmit">Submit</button>   - -->
+                  <!-- <input type="submit" value="Submit" class="Div_btn" id="FlowSubmit">    -->  
+                 <!--  <button class="Div_btn">Cancel</button> -->
+                </div>
+            </div>
+
+            <!-- ------------------------ On Click Setup IP Div ------------------------ -->
+            
+            <div id="Setup_Modal" class="flowmodal_1"  style="display: none;" >
+
+                <!-- ----------------------- Content Aline In Table ------------------------ -->
+              <!-- ---   <form method="post" action="/ip.cgi">--- -->
+                <table>
+                    <tbody><tr>
+                        <td><h1>Warnings!</h1></td>
+                        <td>
+                            <p>The selection of I/P address is only for initial commissioning of the Safe-Weld, and must not be changed during normal operation, which would result in a network failure.
+                            <br>The I/P Address selection can only be made with a single Safe-Weld interfaced to the pendant.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="IP1" type="radio" value="<!--#IP01-->">
+                            <br>
+                            <label >172.24.1.1</label>
+                        </td>
+                        <td>
+                            <p>This is the normal I/P address for a single Safe-Weld on a robot controller, or for the first of two Safe-Welds in Dual-gun applications.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="IP1" type="radio" value="<!--#IP02-->">
+                            <br>
+                            <label >172.24.1.2</label>
+                        </td>
+                        <td>
+                            <p>Select this I/P address for the second Safe-Weld in Dual-gun applications.</p>
+                        </td>
+                    </tr>
+                  
+                </tbody></table>
+
+                <!-- ------------------------- Submit Buttons Div -------------------------- -->
+
+                <div id="btn_div">
+                  <!-- <button class="Div_btn">Submit &amp; Reset</button>    -->     
+                   <!--   <button class="Div_btn" id="CancelBTn">Cancel</button>  -->
+                </div>
+
+            </div>
+
+        </div>
+        <!--  </form> -- -->
+    </form>
+	<div id="BTn_2">
+	<input type="submit" value="Submit" class="Div_btn" form="form" id="FlowSubmit">
+ <button class="Div_btn" id="CancelBTn">Cancel</button>
+	</div>
+	
+    </div>
+
+
+
+<script src="./SetUp_files/setup.js.download">
+</script></body></html>

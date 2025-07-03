@@ -1,0 +1,16 @@
+../lvgl/examples/widgets/dropdown/../../../src/hal/../draw/../misc/lv_color.h:608:26:lv_color_hex	1
+../lvgl/examples/widgets/dropdown/../../../src/hal/../draw/sw/../../core/lv_obj_pos.h:199:20:lv_obj_center	1
+../lvgl/examples/widgets/dropdown/../../../src/core/lv_obj.h:322:22:lv_obj_get_user_data	1
+../lvgl/examples/widgets/dropdown/../../../src/core/lv_disp.h:184:26:lv_scr_act	1
+../lvgl/examples/widgets/dropdown/../../../src/core/lv_disp.h:207:20:lv_scr_load	1
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:131:13:event_handler_Flow_3_parameters	12
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:212:13:return_event_handler	1
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:389:13:spinbox_event_handler	14
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:430:13:increment_temp_event_handler	11
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:454:13:decrement_temp_event_handler	11
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:478:13:update_spinbox_queue	19
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:619:13:event_handler	2
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1284:6:lv_example_btn_1	2
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1307:6:show_text1	9
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1360:6:update_values	9
+../lvgl/examples/widgets/dropdown/lv_example_dropdown_2.c:1399:6:lv_example_dropdown_2	1

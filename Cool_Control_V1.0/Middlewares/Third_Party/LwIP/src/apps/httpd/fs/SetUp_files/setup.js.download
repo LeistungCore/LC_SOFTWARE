@@ -1,0 +1,156 @@
+
+ // Get the modal
+
+ var flowmodal = document.getElementById('flowModal');
+ var Temperature_Modal = document.getElementById('Temperature_Modal');
+ var Setup_Modal = document.getElementById('Setup_Modal');
+ var CnlBtn = document.getElementById('CancelBTn')
+ CnlBtn.onclick= function(){
+ window.location = "index.shtml"
+ }
+ 
+ let pop=0;
+ 
+ // Get the button that opens the modal
+
+ var flowbtn = document.getElementById("flowBtn");
+ var Temperature_Btn = document.getElementById("Temperature_Btn");
+ var Setup_Btn = document.getElementById("Setup_Btn");
+    
+  //When the user clicks the button, open the modal
+ if (pop==0){
+   flowmodal.style.display = "block";
+   Temperature_Modal.style.display = "none";
+   Setup_Modal.style.display = "none";
+   console.log(pop)
+     flowbtn.onclick = function() {
+          console.log("FlowBtn_Clickd if")
+     pop=1;
+     flowmodal.style.display = "block";
+     Temperature_Modal.style.display = "none";
+     Setup_Modal.style.display = "none";
+     }
+
+     Temperature_Btn.onclick = function() {
+          console.log("TemperatureBtn_Clickd if")
+     pop=1;
+     flowmodal.style.display = "none";
+     Temperature_Modal.style.display = "block";
+     Setup_Modal.style.display = "none";
+     }
+
+     Setup_Btn.onclick = function() {
+          console.log("SetupBtn_Clickd if")
+     pop=1;
+     flowmodal.style.display = "none";
+     Temperature_Modal.style.display = "none";
+     Setup_Modal.style.display = "block";
+	 //document.getElementById("Setup_Btn").style.boxShdow  = "5px 5px block";
+     }
+ }
+
+else{
+
+   flowbtn.onclick = function() {
+       console.log("FlowBtn_Clickd els")
+       pop=1;
+   flowmodal.style.display = "block";
+   Temperature_Modal.style.display = "none";
+   Setup_Modal.style.display = "none";
+   }
+   Temperature_Btn.onclick = function() {
+       console.log("TemperatureBtn_Clickd els")
+   pop=1;
+   flowmodal.style.display = "none";
+   Temperature_Modal.style.display = "block";
+   Setup_Modal.style.display = "none";
+   }
+   Setup_Btn.onclick = function() {
+       console.log("SetupBtn_Clickd els")
+	   // document.getElementById("Setup_Btn").style.boxShdow  = "5px 5px block";
+   pop=1;
+   flowmodal.style.display = "none";
+   Temperature_Modal.style.display = "none";
+   Setup_Modal.style.display = "block";
+   }
+      
+}
+
+
+// Default value and options value get by selection tag for flow Unit
+
+//document.getElementById("Unit_flow1").innerHTML="GPM";
+//document.getElementById("Unit_flow2").innerHTML="GPM";
+//document.getElementById("Unit_flow3").innerHTML="GPM";
+
+//function flowUnit_fun (){
+  // var flowUnit = document.getElementById("flowUnit").value;
+  // if(flowUnit=="GPM"){
+ //  document.getElementById("Unit_flow1").innerHTML="GPM";
+ //  document.getElementById("Unit_flow2").innerHTML="GPM";
+ //  document.getElementById("Unit_flow3").innerHTML="GPM";
+ //  }
+ //  else{
+ //      document.getElementById("Unit_flow1").innerHTML="LPM";
+  // document.getElementById("Unit_flow2").innerHTML="LPM";
+ //  document.getElementById("Unit_flow3").innerHTML="LPM";
+ //  }
+   //console.log("vinu:",flowUnit)
+  
+//}
+
+// Default value and options value get by selection tag for Temperature Unit
+
+   document.getElementById("Unit_Temp1").innerHTML="℃";
+   document.getElementById("Unit_Temp2").innerHTML="℃";
+  // document.getElementById("Unit_Temp3").innerHTML="℃";
+  // document.getElementById("Unit_Temp4").innerHTML="J/kg.℃";
+
+function TempUnit_fun(){
+
+   var TempUnit = document.getElementById("TempUnit").value;
+   if(TempUnit=="<!--#Celsius-->"){
+      console.log("ok")
+   document.getElementById("Unit_Temp1").innerHTML="℃";
+   document.getElementById("Unit_Temp2").innerHTML="℃";
+   }
+   else{
+      document.getElementById("Unit_Temp1").innerHTML="℉";
+   document.getElementById("Unit_Temp2").innerHTML="℉";
+   }
+   
+   document.getElementById("Unit_Temp3").innerHTML=TempUnit;
+}
+
+document.getElementById('Slowleak').addEventListener('input', function () {
+  let val = this.value;
+
+  // If user enters 1 digit and no dot, add "."
+  if (/^\d$/.test(val)) {
+    this.value = val + '.';
+  }
+
+  // Optional: Limit to one decimal digit (e.g., 1.1)
+  if (/^\d\.\d{2,}$/.test(val)) {
+    this.value = val.slice(0, 3);
+  }
+});
+//        document.getElementById('form').addEventListener('submit', function(e) {
+//          e.preventDefault();  // 🚫 Stop the page reload
+//          // Now do your fetch or custom code here
+//        
+//          const formData = new FormData(this);
+//        
+//            fetch('/setup.cgi', {
+//              method: 'POST',
+//              body: formData
+//            })
+//            .then(res => res.text())
+//            .then(data => {
+//              console.log('Server says:', data);
+//              // Optional: clear manually if you want: this.reset();
+//            });
+//        });
+
+
+

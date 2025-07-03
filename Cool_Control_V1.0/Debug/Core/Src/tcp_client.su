@@ -1,0 +1,2 @@
+../Core/Src/tcp_client.c:14:14:client_connected	32	static
+../Core/Src/tcp_client.c:20:6:tcp_client_init	16	static
